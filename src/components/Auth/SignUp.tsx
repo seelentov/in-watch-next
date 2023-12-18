@@ -85,7 +85,7 @@ export const SignUp = () => {
         placeholder={errorsState.password ? errors.password?.message : 'Пароль'}
         type="password"
       />
-      <Button>Войти</Button>
+      <Button>Создать аккаунт</Button>
       <p className={styles.rootError}>{errorsState.root}</p>
     </form>
   );
