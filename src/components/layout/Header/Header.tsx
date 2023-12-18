@@ -12,7 +12,7 @@ export const Header = () => {
       <div>
         <Search />
         <User />
-      </div>
+    </div>
     </div>
   );
 }

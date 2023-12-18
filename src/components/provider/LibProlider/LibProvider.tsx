@@ -6,7 +6,6 @@ import Lib from '@/core/models/Lib';
 import Series from '@/core/models/Series';
 import { FC, PropsWithChildren, createContext, useState } from 'react';
 
-
 interface ILibContext {
   lib: Lib,
   setLib: (arg0: Lib) => void

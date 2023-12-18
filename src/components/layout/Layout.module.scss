@@ -3,7 +3,12 @@
   height: 100%;
   margin-left: 274px;
   width: calc(100% - 274px);
+  overflow: hidden;
   main{
+  overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
   }

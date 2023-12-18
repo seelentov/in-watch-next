@@ -1,0 +1,50 @@
+.main {}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+
+  * {
+    flex-shrink: 0;
+  }
+
+  button {
+    padding: 17px 24px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  position: relative;
+  height: 455px;
+  width: 100%;
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+  }
+}
+
+.image {
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  position: relative;
+  margin: 0 0 53px 32px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
