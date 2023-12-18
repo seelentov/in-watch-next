@@ -1,0 +1,78 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding: 0 32px;
+
+  div {
+    display: flex;
+
+    >div {
+      margin: 0 20px;
+    }
+  }
+
+}
+
+
+.menu{
+  display: flex;
+
+  > a {
+    margin: 0 20px;
+  }
+
+  p {
+    color: var(--color-text-opacity)
+  }
+}
+
+
+.active {
+  color: var(--color-text) !important
+}
+
+
+.search {
+  padding: 0 20px;
+  height: 40px;
+  width: 52px;
+  display: flex;
+  justify-content: end;
+  overflow: hidden;
+
+  transition: all .2s;
+
+  form {
+    height: 100%;
+    input {
+    height: 100%;
+      width: 100%;
+      color: var(--color-background);
+    }
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.isOpen {
+  width: 268px;
+  background: var(--color-text);
+  border-radius: 12px;
+}
+
+
+.user {
+  display: flex;
+}
