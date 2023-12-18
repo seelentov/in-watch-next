@@ -28,6 +28,10 @@
   gap: 10px;
   align-items: center;
   color: var(--color-text-opacity);
+  transition: all .2s;
+  &:hover{
+  color: var(--color-text);
+  }
 }
 
 .active{

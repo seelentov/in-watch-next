@@ -26,7 +26,8 @@ export const series: Series[] = [
       3: [
         ...episodes
       ]
-    }
+    },
+    new: true,
   },
   {
     _id: 'alskl;dkas;dlkas;ldas;ldas;ldkals;',
@@ -51,7 +52,8 @@ export const series: Series[] = [
       3: [
         ...episodes
       ]
-    }
+    },
+    new: true,
   },
   {
     _id: 'lggddgfgdfdfgfddfdgfgfgdg',
@@ -76,6 +78,7 @@ export const series: Series[] = [
       3: [
         ...episodes
       ]
-    }
+    },
+    new: true,
   },
 ]
