@@ -12,9 +12,10 @@ import styles from './FilmBanner.module.scss'
 
 export interface IFilmBannerItemProps {
   film: Film | Series
+  header?: 'h1' | 'h2' | 'h3'
 }
 
-export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film: { name, year, tags, duration, _id, thumbnailUrl } }) => {
+export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film: { name, year, tags, duration, _id, thumbnailUrl }, header = 'h2' }) => {
 
   const displayDuration = typeof duration === 'string' ? duration : getHMSFromMilliseconds(duration)
 
@@ -25,7 +26,9 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film: { name, year, t
       </div>
 
       <div className={styles.content}>
-        <h2>{name}</h2>
+        {header === 'h1' ? <h1>{name}</h1> :
+          header === 'h2' ? <h2>{name}</h2> :
+            <h3>{name}</h3>}
         <p>{year} | {tags[0]} | {displayDuration}</p>
         <div className={styles.buttons}>
           <Link href={ROUTING.PLAYER + `/${_id}`}>

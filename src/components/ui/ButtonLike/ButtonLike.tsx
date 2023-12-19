@@ -22,8 +22,12 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
 
   const toggled = [...lib.films, ...lib.series].some(film => film._id === _id)
 
+  const handleClick = (event: any) => {
+    event.preventDefault()
+  }
+
   return (
-    <button className={styles.buttonLike} style={{ width: buttonSize, height: buttonSize }}>
+    <button className={styles.buttonLike} style={{ width: buttonSize, height: buttonSize }} onClick={handleClick}>
       <IconContext.Provider
         value={{ color: 'var(--color-main)', size: iconSize }}
       >

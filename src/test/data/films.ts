@@ -14,6 +14,7 @@ export const films: Film[] = [
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021, duration: 712837, country: 'Россия', rated: '18+',
     new: true,
+    type: 'films'
   },
   {
     _id: 's;dlfk;sldkf;lsdkfl;sdkf',
@@ -27,6 +28,7 @@ export const films: Film[] = [
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021, duration: 712837, country: 'Россия', rated: '18+',
     new: true,
+    type: 'films'
 
   },
   {
@@ -41,6 +43,7 @@ export const films: Film[] = [
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021, duration: 712837, country: 'Россия', rated: '18+',
     new: true,
+    type: 'films'
 
   }
 ]

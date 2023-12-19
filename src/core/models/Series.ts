@@ -3,6 +3,7 @@ import Episode from "./Episode"
 
 export default interface Series {
   _id: string
+  type: 'series'
   thumbnailUrl: string
   name: string
   desc: string

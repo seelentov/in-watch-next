@@ -4,8 +4,8 @@
 import Film from '@/core/models/Film';
 import Lib from '@/core/models/Lib';
 import Series from '@/core/models/Series';
+import { films as myFilms } from '@/test/data/films';
 import { FC, PropsWithChildren, createContext, useState } from 'react';
-
 interface ILibContext {
   lib: Lib,
   setLib: (arg0: Lib) => void
@@ -19,7 +19,7 @@ interface ILibContext {
 export const LibContext = createContext({} as ILibContext)
 
 export const LibProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [films, setFilms] = useState<Film[]>([])
+  const [films, setFilms] = useState<Film[]>([myFilms[0]])
   const [series, setSeries] = useState<Series[]>([])
   const [receit, setReceit] = useState<(Film | Series)[]>([])
 

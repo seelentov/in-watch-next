@@ -8,7 +8,8 @@
   width: 100%;
   top: 0;
   padding: 0 32px;
-
+  transition: all .2s;
+  background: var(--color-background);
   div {
     display: flex;
 
