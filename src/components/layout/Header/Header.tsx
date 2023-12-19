@@ -4,15 +4,17 @@ import styles from './Header.module.scss';
 import { HeaderMenu } from './HeaderMenu';
 import { Search } from './Search';
 import { User } from './User';
+import { HeaderMenuMobile } from './HeaderMenuMobile';
 
 
 
 export const Header = () => {
 
   return (
-    <div className={cn(styles.main)}>
+    <div className={styles.main}>
       <HeaderMenu />
-      <div>
+      <HeaderMenuMobile />
+      <div className={styles.right}>
         <Search />
         <User />
       </div>

@@ -1,4 +1,9 @@
+//header
 .main {
+  @media (max-width: 992px) {
+    height: 50px;
+    padding: 0;
+  } 
   z-index: 10;
   display: flex;
   align-items: center;
@@ -10,21 +15,25 @@
   padding: 0 32px;
   transition: all .2s;
   background: var(--color-background);
-  div {
-    display: flex;
-
-    >div {
-      margin: 0 20px;
-    }
-  }
-
 }
 
 
+.right{
+  gap: 5px;
+  display: flex;
+   > a{
+    @media (max-width: 992px) {
+      display: none;
+    }
+   }
+}
+
 .menu {
   display: flex;
-
-  >a {
+  @media (max-width: 992px) {
+    display: none;
+  }
+  > a {
     margin: 0 20px;
   }
 
@@ -45,13 +54,16 @@
 
 
 .search {
+  @media (max-width: 992px) {
+    height: 50px;
+  } 
   padding: 0 20px;
-  height: 40px;
+  height: 34px;
   width: 52px;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-
+  z-index: 200;
   transition: all .2s;
 
   form {
@@ -78,9 +90,45 @@
   width: 268px;
   background: var(--color-text);
   border-radius: 12px;
+  @media (max-width: 992px) {
+  border-radius: 12px 0 0 12px;
+  }
 }
 
 
 .user {
   display: flex;
+}
+
+
+
+//menuMobile
+
+
+.menuMobile{
+  @media (min-width: 993px) {
+    display: none !important;
+  }
+  > nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: all .2s;
+    overflow: hidden;
+    > aside {
+      position: relative !important;
+    }
+    background-color: var(--color-background)
+  }
+  button{
+    position: relative;
+    z-index: 100;
+  }
+}
+
+
+.menuMobileisOpen{
+  > nav {
+    left: 0;
+  }
 }
