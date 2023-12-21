@@ -3,14 +3,14 @@
 import { ROUTING } from '@/core/config/routing.config';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; 
+import { usePathname } from 'next/navigation';
 
-import { FaArrowUpWideShort, FaFilm, FaHeart } from 'react-icons/fa6';
-import { IoMdSettings } from 'react-icons/io';
+import { FaFilm } from 'react-icons/fa6';
 import { Logout } from './Logout';
 import styles from './Sidebar.module.scss';
 import { SidebarItem } from './SidebarItem';
 import { SidebarList } from './SidebarList';
+import { MENU } from '@/core/config/menu.config';
 
 
 export const SidebarMenu = () => {
@@ -22,30 +22,34 @@ export const SidebarMenu = () => {
     <nav className={styles.menu}>
       <SidebarList>
         <ul>
-          <li>
-            <Link href={ROUTING.HOME}>
-              <SidebarItem icon={<FaFilm size={24} />} text="Главная" active={pathname === ROUTING.HOME} />
-            </Link>
-          </li>
-          <li>
-            <Link href={ROUTING.TRENDING}>
-              <SidebarItem icon={<FaArrowUpWideShort size={24} />} text="Тренды" active={pathname === ROUTING.TRENDING} />
-            </Link>
-          </li>
+          {MENU.ALL.map((menuItem) => (
+            <li key={menuItem.name}>
+              <Link href={menuItem.link}>
+                <SidebarItem icon={menuItem.icon} text={menuItem.name} active={pathname === menuItem.link} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </SidebarList>
+      <SidebarList>
+        <ul className={styles.tags}>
+          {MENU.TAGS.map(tag =>
+            <li key={tag}>
+              <Link href={ROUTING.SEARCH + `/${tag.replace(' ', '_')}`}>
+                <SidebarItem icon={<FaFilm size={24} />} text={tag} />
+              </Link>
+            </li>)}
         </ul>
       </SidebarList>
       {isAuth && <SidebarList>
-        <ul>
-          <li>
-            <Link href={ROUTING.FAVORITES}>
-              <SidebarItem icon={<FaHeart size={24} />} text="Любимое" active={pathname === ROUTING.FAVORITES} />
-            </Link>
-          </li>
-          <li>
-            <Link href={ROUTING.SETTINGS}>
-              <SidebarItem icon={<IoMdSettings color='var(--color-text)' size={24} />} text="Настройки" active={pathname === ROUTING.SETTINGS} />
-            </Link>
-          </li>
+        <ul >
+          {MENU.USER.map((menuItem) => (
+            <li key={menuItem.name}>
+              <Link href={menuItem.link}>
+                <SidebarItem icon={menuItem.icon} text={menuItem.name} active={pathname === menuItem.link} />
+              </Link>
+            </li>
+          ))}
           <li>
             <Logout />
           </li>

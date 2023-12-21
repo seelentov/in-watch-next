@@ -17,7 +17,7 @@ export const films: Film[] = [
     type: 'films'
   },
   {
-    _id: 's;dlfk;sldkf;lsdkfl;sdkf',
+    _id: 'sdlfksldkflsdkflsdkf',
     thumbnailUrl: '/default/film.jpeg',
     name: 'Тестовый фильм2',
     source: '/default/film.mp4',

@@ -4,6 +4,7 @@ export default interface User {
 	login: string
 	email: string
 	role: 'user' | 'admin' | ''
+  favorite: string[]
   token?: string
 }
 

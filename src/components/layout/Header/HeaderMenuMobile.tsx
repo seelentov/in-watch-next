@@ -15,7 +15,7 @@ export const HeaderMenuMobile = () => {
         <button onClick={() => setIsOpen(prev => !prev)}>
           <Hamburger toggled={isOpen} />
         </button>
-        <nav>
+        <nav onClick={() => setIsOpen(false)}>
           <Sidebar/>
         </nav>
         

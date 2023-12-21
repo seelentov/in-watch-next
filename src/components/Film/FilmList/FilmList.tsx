@@ -1,5 +1,6 @@
 'use client'
 
+import SWIPER_CONFIG from '@/core/config/swiper.config';
 import Film from '@/core/models/Film';
 import Series from '@/core/models/Series';
 import { FC } from 'react';
@@ -24,33 +25,8 @@ const FilmList: FC<IFilmListProps> = ({ films, view = 'grid' }) => {
     );
   }
 
-  const swiperConfig = {
-    spaceBetween: 30,
-    slidesPerView: 1,
-    breakpoints: {
-      415: {
-        slidesPerView: 1.5,
-      },
-      600: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1376: {
-        slidesPerView: 4.5,
-      },
-      1550: {
-        slidesPerView: 4.5,
-      },
-      2200: {
-        slidesPerView: 6,
-      },
-    },
-  }
-
   return (
-    <Swiper {...swiperConfig}>
+    <Swiper {...SWIPER_CONFIG.LIST}>
       {films.map(film =>
         <SwiperSlide key={film._id}>
           <FilmItem film={film} />

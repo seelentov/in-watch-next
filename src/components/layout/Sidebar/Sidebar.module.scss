@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
   z-index: 10;
   position: fixed;
   top: 0;
@@ -10,12 +10,14 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  nav{
+
+  nav {
     display: flex;
     flex-direction: column;
     gap: 30px;
-  ul{
-      li{
+
+    ul {
+      li {
         margin: 20px 0;
       }
     }
@@ -24,26 +26,36 @@
 
 
 
-.item{
+.item {
   display: flex;
   gap: 10px;
   align-items: center;
   color: var(--color-text-opacity);
   transition: all .2s;
-  &:hover{
-  color: var(--color-text);
+
+  &:hover {
+    color: var(--color-text);
   }
 }
 
-.active{
+.active {
   color: var(--color-text);
 }
 
-.icon{
+.icon {
   display: flex;
   align-items: center;
 }
 
-.text{
+.tags {
+  height: 232px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+}
 
+.menu{
+  overflow-y: scroll;
 }

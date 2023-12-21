@@ -5,9 +5,7 @@ import { UserProvider } from './UserProvider/UserProivider';
 export const Provider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <UserProvider>
-      <LibProvider>
         {children}
-      </LibProvider>
     </UserProvider>
   );
 }

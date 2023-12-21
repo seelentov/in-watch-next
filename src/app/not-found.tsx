@@ -7,7 +7,7 @@ import { Loader } from "@/components/ui/Loader/Loader";
 export default function Custom404() {
   return (
     <div className={styles.page}>
-      <h2>404</h2>
+      <h2>404 not found</h2>
       <p>Страница не найдена</p>
       <Link href={ROUTING.HOME}>
         <Button>Домой</Button>

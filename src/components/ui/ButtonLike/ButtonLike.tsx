@@ -1,6 +1,6 @@
 'use client'
 
-import { LibContext } from '@/components/provider/LibProlider/LibProvider';
+import { UserContext } from '@/components/provider/UserProvider/UserProivider';
 import { FC, useContext } from 'react';
 import { IconContext } from 'react-icons';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
@@ -15,12 +15,12 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
   size = 's', _id
 }) => {
 
-  const { lib } = useContext(LibContext)
+  const { user } = useContext(UserContext)
 
   const iconSize = size === 's' ? '14px' : '24px'
   const buttonSize = size === 's' ? '32px' : '54px'
 
-  const toggled = [...lib.films, ...lib.series].some(film => film._id === _id)
+  const toggled = user.favorite.some(filmId => filmId === _id)
 
   const handleClick = (event: any) => {
     event.preventDefault()

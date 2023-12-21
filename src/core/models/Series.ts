@@ -11,9 +11,9 @@ export default interface Series {
   comments: string[] | Comment[]
   rating: number
   tags: string[]
-  episodes: { [key: number]: Episode[] | string[] }
+  episodes: { [key: number]: Episode[] }
   year: number
-  duration: number
+  duration: string
   country: string
   rated: string
   new: boolean

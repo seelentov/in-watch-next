@@ -1,6 +1,8 @@
 'use client'
 
 import User from '@/core/models/User';
+import { films } from '@/test/data/films';
+import { series } from '@/test/data/series';
 import { Dispatch, FC, PropsWithChildren, SetStateAction, createContext, useState } from 'react';
 
 
@@ -19,6 +21,7 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
     login: '',
     email: '',
     role: '',
+    favorite: [series[0]._id, films[0]._id]
   }
 
   const [user, setUser] = useState<User>(initialState)

@@ -5,7 +5,7 @@ import { episodes } from "./episodes";
 export const series: Series[] = [
   {
     _id: 'ahskjdjkashkdjhaskdkaskdjahdksja',
-    thumbnailUrl: '/default/film.jpg',
+    thumbnailUrl: '/default/film.jpeg',
     name: 'Тестовый сериал1',
     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit consequuntur veritatis dolorum quae. Impedit totam est deserunt delectus qui. Sit rem vero a non dolores cum fugit eligendi dolorum hic?',
     likes: 2,
@@ -13,15 +13,15 @@ export const series: Series[] = [
     rating: 8.4,
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021,
-    duration: 712837,
+    duration: '3 сезона',
     country: 'Россия',
     rated: '18+',
     episodes: {
       1: [
-        ...episodes
+        ...episodes.slice(0, 2)
       ],
       2: [
-        ...episodes
+        ...episodes.slice(0, 2)
       ],
       3: [
         ...episodes
@@ -31,24 +31,25 @@ export const series: Series[] = [
     type: 'series'
   },
   {
-    _id: 'alskl;dkas;dlkas;ldas;ldas;ldkals;',
-    thumbnailUrl: '/default/film.jpg',
+    _id: 'alskldkasdlkasldaldasldkals',
+    thumbnailUrl: '/default/film.jpeg',
     name: 'Тестовый сериал2',
     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit consequuntur veritatis dolorum quae. Impedit totam est deserunt delectus qui. Sit rem vero a non dolores cum fugit eligendi dolorum hic?',
     likes: 2,
     comments: comments,
     rating: 8.4,
+    duration: '3 сезона',
+
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021,
-    duration: 712837,
     country: 'Россия',
     rated: '18+',
     episodes: {
       1: [
-        ...episodes
+        ...episodes.slice(0, 1)
       ],
       2: [
-        ...episodes
+        ...episodes.slice(0, 2)
       ],
       3: [
         ...episodes
@@ -60,23 +61,24 @@ export const series: Series[] = [
   },
   {
     _id: 'lggddgfgdfdfgfddfdgfgfgdg',
-    thumbnailUrl: '/default/film.jpg',
+    thumbnailUrl: '/default/film.jpeg',
     name: 'Тестовый сериал3',
     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit consequuntur veritatis dolorum quae. Impedit totam est deserunt delectus qui. Sit rem vero a non dolores cum fugit eligendi dolorum hic?',
     likes: 2,
+    duration: '3 сезона',
+
     comments: comments,
     rating: 8.4,
     tags: ['тестовый тег1', 'тестовый тег2', 'тестовый тег3'],
     year: 2021,
-    duration: 712837,
     country: 'Россия',
     rated: '18+',
     episodes: {
       1: [
-        ...episodes
+        ...episodes.slice(0, 1)
       ],
       2: [
-        ...episodes
+        ...episodes.slice(0, 2)
       ],
       3: [
         ...episodes

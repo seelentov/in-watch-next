@@ -3,7 +3,7 @@ import { ROUTING } from "@/core/config/routing.config";
 import Link from "next/link";
 import styles from './SignUpPage.module.scss';
 
-export default function Login() {
+export default function SignUpPage() {
   return (
     <div className={styles.main}>
       <SignUp />
