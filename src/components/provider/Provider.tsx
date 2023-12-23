@@ -7,5 +7,6 @@ export const Provider: FC<PropsWithChildren> = ({ children }) => {
     <UserProvider>
         {children}
     </UserProvider>
+    
   );
 }

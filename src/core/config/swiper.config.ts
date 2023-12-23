@@ -21,6 +21,9 @@ const SWIPER_CONFIG = {
       1550: {
         slidesPerView: 4.5,
       },
+      1700: {
+        slidesPerView: 5.5,
+      },
       2200: {
         slidesPerView: 6,
       },

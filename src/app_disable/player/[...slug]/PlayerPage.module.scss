@@ -1,0 +1,19 @@
+.main {
+  position: relative;
+  margin-top: 100px;
+
+  @media (max-width: 992px) {
+    margin-top: 50px !important;
+    height: calc(100% - 50px) !important;
+  }
+
+  max-width: 100%;
+  height: calc(100% - 100px) !important;
+  overflow: hidden;
+}
+
+.back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

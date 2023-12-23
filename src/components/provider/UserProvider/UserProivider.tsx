@@ -1,8 +1,6 @@
 'use client'
 
-import User from '@/core/models/User';
-import { films } from '@/test/data/films';
-import { series } from '@/test/data/series';
+import User from '@/core/types/user';
 import { Dispatch, FC, PropsWithChildren, SetStateAction, createContext, useState } from 'react';
 
 

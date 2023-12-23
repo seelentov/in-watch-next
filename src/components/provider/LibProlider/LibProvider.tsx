@@ -1,10 +1,5 @@
 'use client'
 
-
-import Film from '@/core/models/Film';
-import Lib from '@/core/models/Lib';
-import Series from '@/core/models/Series';
-import { films as myFilms } from '@/test/data/films';
 import { FC, PropsWithChildren, createContext, useState } from 'react';
 interface ILibContext {
   lib: Lib,

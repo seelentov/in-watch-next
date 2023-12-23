@@ -11,13 +11,13 @@ import { HeaderMenuMobile } from './HeaderMenuMobile';
 export const Header = () => {
 
   return (
-    <div className={styles.main}>
+    <header className={styles.main}>
       <HeaderMenu />
       <HeaderMenuMobile />
       <div className={styles.right}>
         <Search />
         <User />
       </div>
-    </div>
+    </header>
   );
 }

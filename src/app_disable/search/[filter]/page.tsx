@@ -1,8 +1,5 @@
 import FilmList from "@/components/Film/FilmList/FilmList"
-import Film from "@/core/models/Film"
-import Series from "@/core/models/Series"
-import { films } from "@/test/data/films"
-import { series } from "@/test/data/series"
+import Series from "@/core/types/Series"
 
 
 export default function SearchPage({ params }: { params: { filter: string } }) {
@@ -19,14 +16,14 @@ export default function SearchPage({ params }: { params: { filter: string } }) {
   const Films = () => <>{
     filmsFiltered.length > 0 && <>
       <h2>Фильмы</h2>
-      <FilmList films={filmsFiltered} view="slider"/>
+      <FilmList films={filmsFiltered} view="slider" />
     </>
   }</>
 
   const Series = () => <>{
     seriesFiltered.length > 0 && <>
       <h2>Сериалы</h2>
-      <FilmList films={seriesFiltered} view="slider"/>
+      <FilmList films={seriesFiltered} view="slider" />
     </>
   }</>
 

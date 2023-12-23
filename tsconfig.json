@@ -22,7 +22,7 @@
       "@/*": ["./src/*"],
       "@/config": ["./src/core/config"],
       "@/constants": ["./src/core/constants"],
-      "@/models": ["./src/core/models"],
+      "@/types": ["./src/core/types"],
       "@/store": ["./src/core/store"],
       "@/utils": ["./src/core/utils"],
       "@/hooks": ["./src/core/hooks"],

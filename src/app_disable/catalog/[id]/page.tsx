@@ -1,8 +1,6 @@
 import Custom404 from "@/app/not-found";
 import { FilmBannerItem } from "@/components/Film/FilmBanner/FilmBannerItem";
 import { FilmMore } from "@/components/Film/FilmMore/FilmMore";
-import { films } from "@/test/data/films";
-import { series } from "@/test/data/series";
 import styles from './FilmPage.module.scss';
 
 

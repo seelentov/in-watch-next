@@ -1,0 +1,1 @@
+export const KP_API_KEY = process.env.KP_API_KEY

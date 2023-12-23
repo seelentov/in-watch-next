@@ -1,6 +1,6 @@
 'use client'
 
-import { UserSignUp } from '@/core/models/User';
+import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';

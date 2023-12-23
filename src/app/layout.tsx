@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={cn(montserrat.className, 'themes--black')}>
-        <Provider>
+        {/*<Provider>*/}
           <Layout>{children}</Layout>
-        </Provider>
+        {/*</Provider>*/}
       </body>
     </html>
   )
