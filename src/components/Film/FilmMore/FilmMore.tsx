@@ -14,10 +14,10 @@ export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
   return (
     <div className={styles.main}>
       <p className={styles.tags}>
-        {film.genres.map(genre => genre.name).join(' | ')}
+        {film.genres.join(' | ')}
       </p>
       <p className={styles.info}>
-        {film.genres[0].name} | {film.year} | {film.countries.map(country => country.name).join(' | ')}
+        {film.year} | {film.country}
       </p>
       <h2>Описание</h2>
       <p className={styles.desc}>
@@ -32,7 +32,7 @@ export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
           </tr>
           <tr>
             <th>Страна: </th>
-            <td>{film.countries.map(country => country.name).join(', ')}</td>
+            <td>{film.country}</td>
           </tr>
           <tr>
             <th>Длительность: </th>
@@ -40,7 +40,7 @@ export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
           </tr>
           <tr>
             <th>Рейтинг: </th>
-            <td>{film.rating.kp}</td>
+            <td>{film.rating}</td>
           </tr>
         </tbody>
       </table>

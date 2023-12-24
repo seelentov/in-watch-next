@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from "next/link"
 import { FC } from "react"
 import styles from './FilmBanner.module.scss'
+import { API_URL } from "@/core/config/axios.config"
 
 
 export interface IFilmBannerItemProps {
@@ -28,7 +29,7 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, header = 'h2' }
         {film.ageRating}
       </div>
       <div className={styles.image}>
-        <Image src={film.poster} alt={film.name} width={1920} height={1080} />
+        {film.backdrop && <Image src={API_URL + film.backdrop} alt={film.name} width={1920} height={1080} />}
       </div>
       <div className={styles.content}>
         <Link href={pageLink}>
@@ -37,11 +38,12 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, header = 'h2' }
               <h3>{film.name}</h3>}
         </Link>
         <p>{film.year} | {film.genres[0]} | {displayDuration}</p>
+        <p>{film.description}</p>
         <div className={styles.buttons}>
           <Link href={watchLink}>
             <Button>Смотреть</Button>
           </Link>
-          <ButtonLike _id={film._id} size='m' />
+          {/*<ButtonLike _id={film._id} size='m' />*/}
         </div>
       </div>
     </div>

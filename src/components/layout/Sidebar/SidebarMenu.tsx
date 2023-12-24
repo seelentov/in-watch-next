@@ -5,18 +5,22 @@ import { useIsAuth } from '@/core/hooks/useIsAuth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { MENU } from '@/core/config/menu.config';
 import { FaFilm } from 'react-icons/fa6';
 import { Logout } from './Logout';
 import styles from './Sidebar.module.scss';
 import { SidebarItem } from './SidebarItem';
 import { SidebarList } from './SidebarList';
-import { MENU } from '@/core/config/menu.config';
+import apiGetMovies from '@/core/api/api';
 
 
-export const SidebarMenu = () => {
+export const SidebarMenu = async () => {
 
   const isAuth = useIsAuth()
   const pathname = usePathname()
+
+  const tags = await apiGetMovies.getAllTags()
+
 
   return (
     <nav className={styles.menu}>
@@ -33,9 +37,9 @@ export const SidebarMenu = () => {
       </SidebarList>
       <SidebarList>
         <ul className={styles.tags}>
-          {MENU.TAGS.map(tag =>
+          {tags.map(tag =>
             <li key={tag}>
-              <Link href={ROUTING.SEARCH + `/${tag.replace(' ', '_')}`}>
+              <Link href={ROUTING.TAG + `/${tag}`}>
                 <SidebarItem icon={<FaFilm size={24} />} text={tag} />
               </Link>
             </li>)}

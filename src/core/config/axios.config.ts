@@ -1,7 +1,1 @@
-export const API_URL = {
-  
-}
-
-export const API_PATHS = {
-  
-}
+export const API_URL = 'http://localhost:4444/'

@@ -6,7 +6,7 @@ import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
 import styles from './FilmList.module.scss';
-
+import "swiper/css";
 
 export interface IFilmListProps {
   films: Movie[],
@@ -28,6 +28,7 @@ const FilmList: FC<IFilmListProps> = ({ films, view = 'grid' }) => {
       </div>
     );
   }
+
   return (
     <Swiper {...SWIPER_CONFIG.LIST}>
       {films.map(film =>

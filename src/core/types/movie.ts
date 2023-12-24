@@ -2,6 +2,7 @@ export interface Movie {
   _id: string
   name: string
   poster: string
+  backdrop: string
   movieLength: number,
   rating: number
   description: string

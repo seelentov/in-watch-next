@@ -12,7 +12,6 @@ export const Header = () => {
 
   return (
     <header className={styles.main}>
-      <HeaderMenu />
       <HeaderMenuMobile />
       <div className={styles.right}>
         <Search />

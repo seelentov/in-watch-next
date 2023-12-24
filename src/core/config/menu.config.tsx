@@ -26,10 +26,6 @@ export const MENU = {
       icon: <IoMdSettings size={24} />,
       name: 'Настройки'
     },
-  ],
-  TAGS: [
-    'тестовый тег1',
-    'тестовый тег2',
   ]
 } as const
 
