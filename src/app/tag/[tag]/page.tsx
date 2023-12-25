@@ -4,8 +4,6 @@ import FilmList from "@/components/Film/FilmList/FilmList";
 export default async function TagPage({ params }: { params: { tag: string } }) {
 
   const query = {
-    order: 'rating',
-    orderDir: 'desc',
     genres: params.tag
   }
 

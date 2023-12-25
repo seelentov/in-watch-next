@@ -1,5 +1,5 @@
 import { API_URL } from "../config/config";
-import { Filter } from "../types/filter";
+import { Filter, FilterValues } from "../types/filter";
 import { Movie } from "../types/movie";
 
 export interface Response<T> {
@@ -46,18 +46,56 @@ class API_GET_MOVIES {
     }
   }
 
-  async getAllTags(): Promise<string[]> {
+  async getMayValues(): Promise<FilterValues> {
     try {
       const { data } = await this.getAll();
-      const genres = data.reduce((result: string[], film: Movie) => {
+      const genres = Array.from(new Set(data.reduce((result: string[], film: Movie) => {
         film.genres.forEach((genre) => {
-          if (!result.includes(genre)) {
-            result.push(genre);
-          }
+          result.push(genre);
         });
         return result;
-      }, []);
-      return genres.sort();
+      }, []).sort()))
+
+      const ageRating = Array.from(new Set(data.reduce((result: number[], film: Movie) => {
+        result.push(film.ageRating)
+        return result
+      }, []).sort((a,b)=>a-b)))
+
+      const country = Array.from(new Set(data.reduce((result: string[], film: Movie) => {
+        result.push(film.country)
+        return result
+      }, []).sort()))
+
+      const yearMin = Math.min(...data.map(film => film.year));
+      const yearMax = Math.max(...data.map(film => film.year));
+
+      const movieLengthMin = Math.min(...data.map(film => film.movieLength));
+      const movieLengthMax = Math.max(...data.map(film => film.movieLength));
+
+      const ratingMin = Math.floor(Math.min(...data.map(film => film.rating)));
+      const ratingMax = Math.ceil(Math.max(...data.map(film => film.rating)));
+
+      const name = data.reduce((result: string[], film: Movie) => {
+        result.push(film.name)
+        return result
+      }, []).sort();
+
+      return {
+        order: ['Год', 'Длительность', 'Рейтинг', 'Название'],
+        orderDir: ['ASC', 'DESC'],
+        genres,
+        yearMin,
+        yearMax,
+        ageRating,
+        country,
+        movieLengthMin,
+        movieLengthMax,
+        ratingMin,
+        ratingMax,
+        name
+      }
+
+
     } catch (error) {
       throw new Error("Failed to get movie genres");
     }
@@ -69,7 +107,7 @@ class API_GET_MOVIES {
       const data = await this.baseFetch<Movie[]>(`${this.baseUrl}?${filterString}`, {});
       return data;
     } catch (error) {
-      throw new Error("Failed to get movies by filter");
+      throw new Error("Failed to get may values");
     }
   }
 }

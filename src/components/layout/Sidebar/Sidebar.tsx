@@ -5,8 +5,8 @@ import { SidebarMenu } from './SidebarMenu';
 
 export const Sidebar = async () => {
 
-  const tags = await apiGetMovies.getAllTags()
+  const {genres} = await apiGetMovies.getMayValues()
   return (
-    <SidebarMenu {...{ tags }} />
+    <SidebarMenu {...{ genres }} />
   );
 }

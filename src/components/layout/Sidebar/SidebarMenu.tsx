@@ -14,7 +14,7 @@ import styles from './Sidebar.module.scss';
 import { SidebarItem } from './SidebarItem';
 import { SidebarList } from './SidebarList';
 
-export const SidebarMenu: FC<{ tags: string[] }> = ({ tags }) => {
+export const SidebarMenu: FC<{ genres: string[] }> = ({ genres }) => {
 
   const isAuth = useIsAuth()
   const pathname = usePathname()
@@ -40,10 +40,10 @@ export const SidebarMenu: FC<{ tags: string[] }> = ({ tags }) => {
           </SidebarList>
           <SidebarList>
             <ul className={styles.tags}>
-              {tags.map(tag =>
-                <li key={tag}>
-                  <Link href={ROUTING.TAG + `/${tag}`}>
-                    <SidebarItem icon={<FaFilm size={24} />} text={tag} />
+              {genres.map(genre =>
+                <li key={genre}>
+                  <Link href={ROUTING.TAG + `/${genre}`}>
+                    <SidebarItem icon={<FaFilm size={24} />} text={genre} />
                   </Link>
                 </li>)}
             </ul>

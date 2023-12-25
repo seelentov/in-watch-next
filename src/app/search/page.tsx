@@ -10,12 +10,11 @@ export default async function SearchPage({
   searchParams?: Filter;
 }) {
 
-  const data = await apiGetMovies.getAllByFilter(searchParams)
-
+  const mayValues = await apiGetMovies.getMayValues()
   return (
     <div className='content'>
-      <FilterForm filter={searchParams} />
-      <FilmList films={data} />
+      <FilterForm filter={searchParams} mayValues={mayValues} />
+      <FilmList query={searchParams} />
     </div>
   )
 }

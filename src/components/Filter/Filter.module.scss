@@ -1,12 +1,41 @@
 .main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  button{
+    width: 100%;
+  }
 }
 
 .input {
   transition: all .2s;
   border-bottom: 1px solid var(--color-text-opacity);
   padding: 10px 0;
+  width: 100%;
 }
 
-.nameInput{
+
+.inputColumn{
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+  width: 30%;
+  min-width: 170px;
+}
+
+.inputRow{
+  position: relative;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+}
+
+.autoName{
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  
 }

@@ -1,17 +1,17 @@
 'use client'
-import { Loader } from '@/components/ui/Loader/Loader';
 import apiGetMovies, { Response } from '@/core/api/api';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
 import { Filter } from '@/core/types/filter';
+import { Movie } from '@/core/types/movie';
 import { FC, useEffect, useState } from 'react';
 import "swiper/css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
+import { FilmItemSkeleton } from '../FilmItemSkeleton/FilmItemSkeleton';
 import styles from './FilmList.module.scss';
-import { Movie } from '@/core/types/movie';
 
 export interface IFilmListProps {
-  query: Filter,
+  query?: Filter,
   view?: 'grid' | 'slider'
 }
 
@@ -25,7 +25,7 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
     count: 0,
     entries: 0
   })
-  const [limit, setLimit] = useState<number>(query.page_limit || 9)
+  const [limit, setLimit] = useState<number>(query?.page_limit ? parseInt(query?.page_limit as string) : 9)
   const [entries, setEntries] = useState<number>(0)
   const [fetching, setFetching] = useState<boolean>(true)
 
@@ -37,10 +37,10 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
         setEntries(r.entries)
       })
       .then(() => setFetching(false))
-  }, [limit])
+  }, [limit, query])
 
   useEffect(() => {
-    if (view === 'slider' || query.page_limit) return
+    if (view === 'slider' || query?.page_limit) return
 
     const content = document.querySelector('main')
 
@@ -54,8 +54,10 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
     const scrollHeight = e.target?.scrollHeight
     const scrollTop = e.target?.scrollTop
     const innerHeight = window.innerHeight
-
-    if ((innerHeight + scrollTop) > scrollHeight) {
+    console.log('scrollHeight', scrollHeight)
+    console.log('scrollTop', scrollTop)
+    console.log('innerHeight', innerHeight)
+    if (scrollHeight - (innerHeight + scrollTop) < 100) {
       setLimit(prev => {
         let newState = prev
         setEntries(prevEntries => {
@@ -67,7 +69,7 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
     }
   }
 
-  if (!films) {
+  if (films.length === 0 && !fetching) {
     return <p>Ничего не найдено</p>
   }
 
@@ -78,12 +80,10 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
           {films.map(film =>
             <FilmItem key={film._id} film={film} />
           )}
+          {fetching && Array.from(new Array(8)).map((_, key) =>
+            <FilmItemSkeleton key={key} />
+          )}
         </div>
-        {fetching &&
-          <div className={styles.loader}>
-            <Loader />
-          </div>
-        }
       </>
     );
   }
@@ -94,6 +94,11 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
         <SwiperSlide key={film._id}>
           <FilmItem film={film} />
         </SwiperSlide>)}
+      {fetching && Array.from(new Array(8)).map((_, key) =>
+        <SwiperSlide key={key}>
+          <FilmItemSkeleton />
+        </SwiperSlide>
+      )}
     </Swiper>
   )
 
