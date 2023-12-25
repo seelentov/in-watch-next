@@ -16,7 +16,7 @@ export default async function FilmPage({ params }: { params: { id: string } }) {
 
   return (
     <div className={styles.main}>
-      <FilmBannerItem film={film} header='h1' />
+      <FilmBannerItem film={film} header='h1' hideDesc/>
       <div className="content-main">
         <FilmMore film={film} />
       </div>

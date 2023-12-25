@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { API_URL } from "../config/axios.config"
+import { Filter } from "../types/filter"
 import { Movie } from "../types/movie"
+
 
 
 class API_GET_MOVIES {
@@ -32,11 +34,11 @@ class API_GET_MOVIES {
       return result;
     }, []);
 
-    return genres;
+    return genres.sort();
   }
 
-  async getAllByFilter(filter: { [key: string]: string }): Promise<AxiosResponse<Movie[], any>> {
-    const filterString = Object.entries(filter).map(([key, value]) => `${key}=${value}`).join('&')
+  async getAllByFilter(filter?: Filter): Promise<AxiosResponse<Movie[], any>> {
+    const filterString = filter ? Object.entries(filter).map(([key, value]) => `${key}=${value}`).join('&') : ''
 
     return await this.baseFetch(`${this.baseUrl}?${filterString}`, {})
   }

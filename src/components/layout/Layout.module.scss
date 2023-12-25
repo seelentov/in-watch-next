@@ -27,9 +27,4 @@
 
   width: 100%;
   height: 100%;
-  > aside{
-    @media (max-width: 992px) {
-      display: none;
-    }
-  }
 }

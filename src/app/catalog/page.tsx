@@ -1,14 +1,14 @@
+import { TagList } from "@/components/Tag/TagList/TagList";
 import apiGetMovies from "@/core/api/api";
 
 
 export default async function TrendingPage() {
-  const data = await apiGetMovies.getAllTags()
+  const tags = await apiGetMovies.getAllTags()
 
-  console.log(data)
 
   return (
     <div className="content">
-      {/*<FilmList films={filmsList} />*/}
+      <TagList tags={tags} />
     </div>
   )
 }

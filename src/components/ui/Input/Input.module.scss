@@ -1,13 +1,4 @@
-.page {
-  max-width: 450px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 80%;
-  padding: 100px 0 0 0;
-}
-
-.input {
+.main {
   transition: all .2s;
   border-bottom: 1px solid var(--color-text-opacity);
   padding: 10px 0;
@@ -19,9 +10,4 @@
   &::placeholder {
     color: var(--color-err);
   }
-}
-
-.rootError {
-  color: var(--color-err);
-  text-align: center;
 }

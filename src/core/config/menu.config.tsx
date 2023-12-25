@@ -1,6 +1,7 @@
 import { ROUTING } from "@/core/config/routing.config"
 import { FaArrowUpWideShort, FaFilm, FaHeart } from "react-icons/fa6"
 import { IoMdSettings } from "react-icons/io"
+import { IoSearchSharp } from "react-icons/io5"
 
 export const MENU = {
   ALL: [
@@ -13,6 +14,11 @@ export const MENU = {
       link: ROUTING.TRENDING,
       icon: <FaArrowUpWideShort size={24} />,
       name: 'Тренды'
+    },
+    {
+      link: ROUTING.SEARCH,
+      icon: <IoSearchSharp size={24} />,
+      name: 'Поиск'
     }
   ],
   USER: [

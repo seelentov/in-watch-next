@@ -1,6 +1,4 @@
 import { Layout } from '@/components/layout/Layout';
-import { Provider } from '@/components/provider/Provider';
-import { SCREEN } from '@/core/constants/screen';
 import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
@@ -19,12 +17,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-
   return (
     <html lang="ru">
       <body className={cn(montserrat.className, 'themes--black')}>
         {/*<Provider>*/}
-          <Layout>{children}</Layout>
+        <Layout>{children}</Layout>
         {/*</Provider>*/}
       </body>
     </html>

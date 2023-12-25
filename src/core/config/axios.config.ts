@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:4444/'
+export const API_URL = 'https://in-watch-backend-production.up.railway.app/'

@@ -1,10 +1,10 @@
 
-import cn from 'classnames';
+import { Logo } from '@/components/ui/Logo/Logo';
+import { ROUTING } from '@/core/config/routing.config';
+import Link from 'next/link';
 import styles from './Header.module.scss';
-import { HeaderMenu } from './HeaderMenu';
 import { Search } from './Search';
 import { User } from './User';
-import { HeaderMenuMobile } from './HeaderMenuMobile';
 
 
 
@@ -12,7 +12,11 @@ export const Header = () => {
 
   return (
     <header className={styles.main}>
-      <HeaderMenuMobile />
+      <div className={styles.logo}>
+        <Link href={ROUTING.HOME}>
+          <Logo />
+        </Link>
+      </div>
       <div className={styles.right}>
         <Search />
         <User />

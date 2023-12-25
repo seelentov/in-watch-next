@@ -16,12 +16,13 @@ export default async function HomePage() {
     orderDir: 'desc'
   })
 
-
   return (
-    <div className='content-main'>
+    <>
       <FilmBanner films={bannerList} />
-      <h1>Тренды</h1>
-      <FilmList films={filmsList} view="slider" />
-    </div>
+      <div className='content-main'>
+        <h1>Тренды</h1>
+        <FilmList films={filmsList} view="slider" />
+      </div>
+    </>
   )
 }
