@@ -8,7 +8,8 @@ import styles from './FilmPage.module.scss';
 
 export default async function FilmPage({ params }: { params: { id: string } }) {
 
-  const { data: film } = await apiGetMovies.getOne(params.id)
+  const film = await apiGetMovies.getOne(params.id)
+
 
   if (!film) {
     return <div className={styles.notFound}><Custom404 /></div>
@@ -16,7 +17,7 @@ export default async function FilmPage({ params }: { params: { id: string } }) {
 
   return (
     <div className={styles.main}>
-      <FilmBannerItem film={film} header='h1' hideDesc/>
+      <FilmBannerItem film={film} header='h1' isMorePage />
       <div className="content-main">
         <FilmMore film={film} />
       </div>

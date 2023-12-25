@@ -13,4 +13,6 @@ export interface Filter {
   ratingMin?: string
   ratingMax?: string
   showInBanner?: string
+  page?: number
+  page_limit?: number
 }

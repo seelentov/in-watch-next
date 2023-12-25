@@ -3,8 +3,8 @@ import { Movie } from '@/core/types/movie';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { API_URL } from '../../../core/config/axios.config';
 import styles from './FilmItem.module.scss';
+import { API_URL } from '@/core/config/config';
 export interface IFilmsItemProps {
   film: Movie
 }

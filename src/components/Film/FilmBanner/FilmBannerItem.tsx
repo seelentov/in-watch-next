@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button/Button"
-import { API_URL } from "@/core/config/axios.config"
+import { API_URL } from "@/core/config/config"
 import { ROUTING } from "@/core/config/routing.config"
 import { Movie } from "@/core/types/movie"
 import getHMFromMins from "@/core/utils/date/getHMFromMins"
@@ -12,10 +12,14 @@ import styles from './FilmBanner.module.scss'
 export interface IFilmBannerItemProps {
   film: Movie
   header?: 'h1' | 'h2' | 'h3'
-  hideDesc?: boolean
+  isMorePage?: boolean
 }
 
-export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, hideDesc, header = 'h2' }) => {
+export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, isMorePage, header = 'h2' }) => {
+
+  const showHeader = header === 'h1' ? <h1>{film.name}</h1> :
+    header === 'h2' ? <h2>{film.name}</h2> :
+      <h3>{film.name}</h3>
 
   const displayDuration = getHMFromMins(film.movieLength)
 
@@ -38,13 +42,14 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, hideDesc, heade
           />}
       </div>
       <div className={styles.content}>
-        <Link href={pageLink}>
-          {header === 'h1' ? <h1>{film.name}</h1> :
-            header === 'h2' ? <h2>{film.name}</h2> :
-              <h3>{film.name}</h3>}
-        </Link>
+        {!isMorePage
+          ? <Link href={pageLink}>
+            {showHeader}
+          </Link>
+          : showHeader}
+
         <p>{film.year} | {film.genres[0]} | {displayDuration}</p>
-        {!hideDesc && <p>{film.description}</p>}
+        {!isMorePage && <p>{film.description}</p>}
         <div className={styles.buttons}>
           <Link href={watchLink}>
             <Button>Смотреть</Button>

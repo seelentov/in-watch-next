@@ -1,1 +1,1 @@
-export const KP_API_KEY = process.env.KP_API_KEY
+export const API_URL = 'https://in-watch-backend-production.up.railway.app/'

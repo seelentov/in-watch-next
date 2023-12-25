@@ -10,7 +10,7 @@ export default async function SearchPage({
   searchParams?: Filter;
 }) {
 
-  const { data } = await apiGetMovies.getAllByFilter(searchParams)
+  const data = await apiGetMovies.getAllByFilter(searchParams)
 
   return (
     <div className='content'>

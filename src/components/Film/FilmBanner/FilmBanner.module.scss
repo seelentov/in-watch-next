@@ -25,12 +25,15 @@
   justify-content: flex-end;
   overflow: hidden;
   position: relative;
-  height: 455px;
   width: 100%;
-
+  min-height: 450px;
   h1,
   h2 {
     font-size: 48px;
+    @media (max-width: 450px) {
+    font-size: 21px;
+    margin: 0;
+    }
     font-weight: 600;
     transition: all .2s;
     line-height: 100%;

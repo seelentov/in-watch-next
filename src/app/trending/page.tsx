@@ -3,16 +3,16 @@ import apiGetMovies from "@/core/api/api";
 
 
 export default async function TrendingPage() {
-  const { data: filmsList } = await apiGetMovies.getAllByFilter({
+  const query = {
     order: 'rating',
-    limit: '9',
+    page_limit: 9,
     orderDir: 'desc'
-  })
+  }
 
   return (
     <div className="content">
       <h2>Тренды</h2>
-      <FilmList films={filmsList} />
+      <FilmList query={query} />
     </div>
   )
 }
