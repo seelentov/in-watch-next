@@ -13,6 +13,7 @@ export default async function SearchPage({
   const mayValues = await apiGetMovies.getMayValues()
   return (
     <div className='content'>
+      <h2>{searchParams?.name ? `Поиск по запросу ${searchParams.name}` : 'Поиск'}</h2>
       <FilterForm filter={searchParams} mayValues={mayValues} />
       <FilmList query={searchParams} />
     </div>

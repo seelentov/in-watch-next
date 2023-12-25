@@ -54,9 +54,7 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
     const scrollHeight = e.target?.scrollHeight
     const scrollTop = e.target?.scrollTop
     const innerHeight = window.innerHeight
-    console.log('scrollHeight', scrollHeight)
-    console.log('scrollTop', scrollTop)
-    console.log('innerHeight', innerHeight)
+
     if (scrollHeight - (innerHeight + scrollTop) < 100) {
       setLimit(prev => {
         let newState = prev

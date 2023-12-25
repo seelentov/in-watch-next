@@ -1,0 +1,36 @@
+.main {
+  * {
+    color: var(--color-text) !important;
+  }
+
+  width: 100%;
+
+  [class$="-control"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-text-opacity);
+    background-color: var(--color-background);
+  }
+
+  [class$="-option"] {
+    background-color: var(--color-background);
+
+    &:focus {
+      background-color: var(--color-text);
+    }
+
+  }
+
+  [class$="-multi-value"] {
+  }
+
+  [class$="-menu"] {
+    background-color: var(--color-background);
+
+  }
+
+  [class$="-multi-value__label"] {
+    color: #ff0000;
+  }
+
+}
