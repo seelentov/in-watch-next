@@ -6,12 +6,23 @@
   @media (max-width: 992px) {
     width: 100%;
   }
+
   width: 50%;
   font-size: 20px;
-  th{
+
+  th {
     color: var(--color-text-opacity);
     font-weight: 400;
     text-align: left;
     margin-right: 5px;
+  }
+}
+
+.stars {
+  @media (max-width: 992px) {
+    svg {
+      width: 30px !important;
+      height: 30px !important;
+    }
   }
 }

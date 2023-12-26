@@ -1,5 +1,12 @@
 import FilmList from "@/components/Film/FilmList/FilmList";
-import apiGetMovies from "@/core/api/api";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Тренды',
+    description: 'Самое популярное в этом месяце',
+  }
+}
 
 
 export default async function TrendingPage() {

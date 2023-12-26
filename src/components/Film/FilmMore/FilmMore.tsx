@@ -1,15 +1,17 @@
-import { Movie } from '@/core/types/movie';
 import getHMFromMins from '@/core/utils/date/getHMFromMins';
 import { FC } from 'react';
 import styles from './FilmMore.module.scss';
+import { Rating } from './Rating';
+import { Movie } from '@/core/types/movie';
 
-export interface IFilmMoreProps {
+interface IFilmMoreProps {
   film: Movie
 }
 
+
 export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
 
-  const displayDuration = getHMFromMins(film.movieLength)
+  const displayDuration = getHMFromMins(film.movieLength);
 
   return (
     <div className={styles.main}>
@@ -23,6 +25,8 @@ export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
       <p className={styles.desc}>
         {film.description}
       </p>
+      <h2>Рейтинг</h2>
+      <Rating rating={film.rating} />
       <h2>Подробности</h2>
       <table className={styles.moreInfo}>
         <tbody>
@@ -38,12 +42,8 @@ export const FilmMore: FC<IFilmMoreProps> = ({ film }) => {
             <th>Длительность: </th>
             <td>{displayDuration}</td>
           </tr>
-          <tr>
-            <th>Рейтинг: </th>
-            <td>{film.rating}</td>
-          </tr>
         </tbody>
       </table>
     </div>
   );
-}
+};

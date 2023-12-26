@@ -7,11 +7,11 @@ import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { FaFilter } from 'react-icons/fa6';
+import { IoCloseSharp } from 'react-icons/io5';
 import { Button } from '../ui/Button/Button';
 import { CustomSelect } from '../ui/Select/Select';
 import styles from './Filter.module.scss';
-import { FaFilter } from 'react-icons/fa6';
-import { IoCloseSharp } from 'react-icons/io5';
 
 /**
   order?: string
@@ -35,6 +35,7 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
     control,
     handleSubmit,
     setValue,
+    reset
   } = useForm({
     defaultValues: { ...filter },
     mode: 'onChange',
@@ -59,6 +60,12 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
     const params = new URLSearchParams(filteredValues)
 
     navigate.push(`${ROUTING.SEARCH}?${params.toString()}`)
+  }
+
+  const clearFilter = (e: any) => {
+    e.preventDefault()
+    navigate.push(ROUTING.SEARCH)
+    reset()
   }
 
   return (
@@ -141,6 +148,7 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
           {/* Тут селекты для страны, жанра, возрастного рейтинга */}
         </div>
         <Button className={styles.submit}>Поиск...</Button>
+        <Button className={styles.submit} onClick={clearFilter}>Сбросить</Button>
       </form>
     </>
   );
