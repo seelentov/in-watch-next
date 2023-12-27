@@ -5,10 +5,11 @@ import { Filter, FilterValues } from '@/core/types/filter';
 import { clearEmptyAttrs } from '@/core/utils/obj/clearEmptyAttrs';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { FaFilter } from 'react-icons/fa6';
 import { IoCloseSharp } from 'react-icons/io5';
+import { Autocomplete } from '../Autocomplete/Autocomplete';
 import { Button } from '../ui/Button/Button';
 import { CustomSelect } from '../ui/Select/Select';
 import styles from './Filter.module.scss';
@@ -70,12 +71,12 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
     reset()
   }
 
-  const handleChangeName = (e: any) => {
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()
 
-    if(value === '') return setMayNames([])
+    if (value === '') return setMayNames([])
 
-    const newMayNames: string[] = mayValues.name.filter(name => name.includes(e.target.value)).slice(0,3)
+    const newMayNames: string[] = mayValues.name.filter(name => name.includes(e.target.value)).slice(0, 3)
     setMayNames(newMayNames)
   }
 
@@ -95,11 +96,10 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
           <input {...register('name')}
             onChange={handleChangeName}
             className={cn(styles.input, styles.nameInput)} placeholder='Поиск по названию' type='text' />
-          <ul className={styles.mayNames}>
-            {mayNames.map(name =>
-              <li key={name} onClick={() => handleClickName(name)}>{name}</li>
-            )}
-          </ul>
+          <Autocomplete
+            mayNames={mayNames}
+            handleClickName={handleClickName}
+          />
         </div>
         <div className={styles.inputRow}>
           <div className={styles.inputColumn}>
