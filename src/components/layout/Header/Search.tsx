@@ -58,7 +58,6 @@ export const Search: FC<{ mayNames: string[] }> = ({
 
   const handleMouseEnter = (e: any) => {
     setIsOpen(true)
-    console.log(e)
 
     if (input === '') return setMayNamesFiltred([])
 

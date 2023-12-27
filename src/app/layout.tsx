@@ -1,4 +1,5 @@
 import { Layout } from '@/components/layout/Layout';
+import { Provider } from '@/components/provider/Provider';
 import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
@@ -23,9 +24,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={cn(montserrat.className, 'themes--black')}>
-        {/*<Provider>*/}
-        <Layout>{children}</Layout>
-        {/*</Provider>*/}
+        <Provider>
+          <Layout>{children}</Layout>
+        </Provider>
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { UserContext } from '@/components/provider/UserProvider/UserProivider';
+import { UserContext } from '@/components/provider/UserProvider';
 import { FC, useContext } from 'react';
 import { IconContext } from 'react-icons';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
@@ -20,10 +20,15 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
   const iconSize = size === 's' ? '14px' : '24px'
   const buttonSize = size === 's' ? '32px' : '54px'
 
-  const toggled = user.favorite.some(filmId => filmId === _id)
+  const toggled = user?.favorite?.some(filmId => filmId === _id)
 
   const handleClick = (event: any) => {
     event.preventDefault()
+    if(!toggled){
+  
+    } else {
+     
+    }
   }
 
   return (

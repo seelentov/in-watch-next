@@ -1,8 +1,8 @@
 import { SignUp } from "@/components/Auth/SignUp";
 import { ROUTING } from "@/core/config/routing.config";
+import { Metadata } from "next";
 import Link from "next/link";
 import styles from './SignUpPage.module.scss';
-import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

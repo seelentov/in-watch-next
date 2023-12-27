@@ -1,11 +1,11 @@
 import { FilmBanner } from "@/components/Film/FilmBanner/FilmBanner"
 import FilmList from "@/components/Film/FilmList/FilmList"
-import apiGetMovies from "@/core/api/api"
+import { getAllByFilter } from "@/core/api/movies.api"
 import { Filter } from "@/core/types/filter"
 
 export default async function HomePage() {
 
-  const { data: bannerList } = await apiGetMovies.getAllByFilter({
+  const { data: bannerList } = await getAllByFilter({
     order: 'rating',
     showInBanner: 'true',
     page_limit: 3,

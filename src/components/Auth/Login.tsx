@@ -1,15 +1,23 @@
 'use client'
 
+import { ROUTING } from '@/core/config/routing.config';
+import { useToken } from '@/core/hooks/useToken';
 import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
-import { useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../provider/UserProvider/UserProivider';
+import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
+import { login } from '@/core/api/account.api';
+
+
 export const Login = () => {
 
   const { setUser } = useContext(UserContext)
+  const navigate = useRouter()
+  const { token, setToken } = useToken()
 
   const {
     register,
@@ -19,8 +27,8 @@ export const Login = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'test@test.ru',
+      password: 'test@test.ru',
     } as UserSignUp,
     mode: 'onChange',
   })
@@ -31,37 +39,28 @@ export const Login = () => {
     root: Boolean(errors.root?.message),
   }
 
+  useEffect(() => {
+    if (token) {
+      navigate.push(`${ROUTING.HOME}`)
+    }
 
+  }, [token])
 
   const onSubmit = async (dt: UserSignUp) => {
+    try {
+      setError('root', {
+        message: '',
+      })
+      const user = await login(dt)
 
-    await setError('root', {
-      message: '',
-    })
+      const { token, ...userData } = user
 
-    //if (res.error) {
-    //  resetField('email')
-    //  resetField('password')
-    //  return setError('root', {
-    //    message: 'Wrong login or password',
-    //  })
-    //}
+      setToken(token)
+      setUser(userData)
 
-
-    //if (res.error) {
-    //  return res.error.data.map((error: any) => {
-    //    resetField(error.path)
-    //    setError(error.path, {
-    //      message: error.msg,
-    //    })
-    //  })
-    //}
-
-    //const { token, ...user } = res.data
-
-    //localStorage.setItem('token', token)
-
-    //setUser(user)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from "next/link"
 import { FC } from "react"
 import styles from './FilmBanner.module.scss'
+import { ButtonLike } from "@/components/ui/ButtonLike/ButtonLike"
 
 
 export interface IFilmBannerItemProps {
@@ -54,7 +55,7 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, isMorePage, hea
           <Link href={watchLink}>
             <Button>Смотреть</Button>
           </Link>
-          {/*<ButtonLike _id={film._id} size='m' />*/}
+          <ButtonLike _id={film._id} size='m' />
         </div>
       </div>
     </div>

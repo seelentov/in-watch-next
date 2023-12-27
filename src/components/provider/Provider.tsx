@@ -1,11 +1,14 @@
 import { FC, PropsWithChildren } from 'react';
-import { UserProvider } from './UserProvider/UserProivider';
+import { LoadingProvider } from './LoadingProvider';
+import { UserProvider } from './UserProvider';
 
 export const Provider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <UserProvider>
+
+    <LoadingProvider>
+      <UserProvider>
         {children}
-    </UserProvider>
-    
+      </UserProvider>
+    </LoadingProvider>
   );
 }

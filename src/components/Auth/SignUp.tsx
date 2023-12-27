@@ -4,7 +4,7 @@ import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../provider/UserProvider/UserProivider';
+import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
 export const SignUp = () => {

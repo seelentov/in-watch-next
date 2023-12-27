@@ -1,17 +1,17 @@
 
 import { Logo } from '@/components/ui/Logo/Logo';
-import apiGetMovies from '@/core/api/api';
 import { ROUTING } from '@/core/config/routing.config';
 import Link from 'next/link';
 import styles from './Header.module.scss';
 import { Search } from './Search';
 import { User } from './User';
+import { getMayValues } from '@/core/api/movies.api';
 
 
 
 export const Header = async () => {
 
-  const mayValues = await apiGetMovies.getMayValues()
+  const mayValues = await getMayValues()
 
   return (
     <header className={styles.main}>

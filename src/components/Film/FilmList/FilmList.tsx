@@ -1,5 +1,5 @@
 'use client'
-import apiGetMovies, { Response } from '@/core/api/api';
+import { Response, getAllByFilter } from '@/core/api/movies.api';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
 import { Filter } from '@/core/types/filter';
 import { Movie } from '@/core/types/movie';
@@ -31,7 +31,7 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
 
   useEffect(() => {
     setFetching(true)
-    apiGetMovies.getAllByFilter({ ...query, page_limit: limit })
+    getAllByFilter({ ...query, page_limit: limit })
       .then((r) => {
         setFilms(r)
         setEntries(r.entries)

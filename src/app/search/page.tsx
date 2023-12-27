@@ -1,6 +1,6 @@
 import FilmList from "@/components/Film/FilmList/FilmList";
 import { FilterForm } from "@/components/Filter/Filter";
-import apiGetMovies from "@/core/api/api";
+import { getMayValues } from "@/core/api/movies.api";
 import { Filter } from "@/core/types/filter";
 import { Metadata } from "next";
 
@@ -26,7 +26,7 @@ export default async function SearchPage({
 }: ISearchPageProps) {
 
 
-  const mayValues = await apiGetMovies.getMayValues()
+  const mayValues = await getMayValues()
   return (
     <div className='content'>
       <h2>{searchParams?.name ? `Поиск по запросу ${searchParams.name}` : 'Поиск'}</h2>

@@ -1,6 +1,6 @@
 'use client'
 
-import { UserContext } from "@/components/provider/UserProvider/UserProivider";
+import { UserContext } from "@/components/provider/UserProvider";
 import { useContext } from "react";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { SidebarItem } from "./SidebarItem";

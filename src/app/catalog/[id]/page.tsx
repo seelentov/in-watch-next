@@ -1,9 +1,9 @@
 import Custom404 from "@/app/not-found";
 import { FilmBannerItem } from "@/components/Film/FilmBanner/FilmBannerItem";
 import { FilmMore } from '@/components/Film/FilmMore/FilmMore';
-import apiGetMovies from "@/core/api/api";
 import { Metadata } from "next";
 import styles from './FilmPage.module.scss';
+import { getOne } from "@/core/api/movies.api";
 
 
 interface IFilmPageProps {
@@ -14,7 +14,7 @@ export async function generateMetadata(
   { params }: IFilmPageProps
 ): Promise<Metadata> {
   const id = params.id
-  const film = await apiGetMovies.getOne(id)
+  const film = await getOne(id)
   return {
     title: film.name,
     description: film.description,
@@ -24,8 +24,7 @@ export async function generateMetadata(
 
 export default async function FilmPage({ params }: IFilmPageProps) {
 
-  const film = await apiGetMovies.getOne(params.id)
-
+  const film = await getOne(params.id)
   if (!film) {
     return <div className={styles.notFound}><Custom404 /></div>
   }
