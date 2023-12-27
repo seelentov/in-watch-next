@@ -9,7 +9,11 @@ export interface IVolumeProps {
 export const Volume: FC<IVolumeProps> = ({volume, handleVolumeChange}) => {
   return (
     <div className={styles.volume}>
-      <input type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} />
+      <input type="range" min="0" max="1" step="0.1" value={volume} 
+      onChange={handleVolumeChange}
+      // @ts-ignore
+      orient="vertical"
+       />
     </div>
   );
 }

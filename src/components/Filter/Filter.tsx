@@ -30,12 +30,14 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
 
   const navigate = useRouter()
   const [isOpen, setIsOpen] = useState<boolean>(true)
+
+  const [mayNames, setMayNames] = useState<string[]>([])
   const {
     register,
     control,
     handleSubmit,
     setValue,
-    reset
+    reset,
   } = useForm({
     defaultValues: { ...filter },
     mode: 'onChange',
@@ -68,6 +70,20 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
     reset()
   }
 
+  const handleChangeName = (e: any) => {
+    const value = e.target.value.trim()
+
+    if(value === '') return setMayNames([])
+
+    const newMayNames: string[] = mayValues.name.filter(name => name.includes(e.target.value)).slice(0,3)
+    setMayNames(newMayNames)
+  }
+
+  const handleClickName = (name: string) => {
+    setValue('name', name)
+    setMayNames([])
+  }
+
   return (
     <>
       <button className={styles.toggleBtn} onClick={() => setIsOpen(prev => !prev)}>
@@ -77,7 +93,13 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
 
         <div className={styles.inputRow}>
           <input {...register('name')}
+            onChange={handleChangeName}
             className={cn(styles.input, styles.nameInput)} placeholder='Поиск по названию' type='text' />
+          <ul className={styles.mayNames}>
+            {mayNames.map(name =>
+              <li key={name} onClick={() => handleClickName(name)}>{name}</li>
+            )}
+          </ul>
         </div>
         <div className={styles.inputRow}>
           <div className={styles.inputColumn}>

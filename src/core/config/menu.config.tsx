@@ -2,6 +2,7 @@ import { ROUTING } from "@/core/config/routing.config"
 import { FaArrowUpWideShort, FaFilm, FaHeart } from "react-icons/fa6"
 import { IoMdSettings } from "react-icons/io"
 import { IoSearchSharp } from "react-icons/io5"
+import { RiLogoutBoxFill } from "react-icons/ri"
 
 export const MENU = {
   ALL: [
@@ -31,6 +32,13 @@ export const MENU = {
       link: ROUTING.SETTINGS,
       icon: <IoMdSettings size={24} />,
       name: 'Настройки'
+    },
+  ],
+  NON_USER: [
+    {
+      link: ROUTING.LOGIN,
+      icon: <RiLogoutBoxFill size={24} />,
+      name: 'Войти'
     },
   ]
 } as const

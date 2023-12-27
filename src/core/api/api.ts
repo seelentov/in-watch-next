@@ -59,7 +59,7 @@ class API_GET_MOVIES {
       const ageRating = Array.from(new Set(data.reduce((result: number[], film: Movie) => {
         result.push(film.ageRating)
         return result
-      }, []).sort((a,b)=>a-b)))
+      }, []).sort((a, b) => a - b)))
 
       const country = Array.from(new Set(data.reduce((result: string[], film: Movie) => {
         result.push(film.country)

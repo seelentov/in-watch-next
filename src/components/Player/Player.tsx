@@ -1,9 +1,11 @@
 'use client'
 
 import { Movie } from '@/core/types/movie';
+import { useRouter } from 'next/navigation';
 import { FC, useRef, useState } from 'react';
 import { Controls } from './Controls';
 import styles from './Player.module.scss';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 export interface IPlayerProps {
   content: Movie
 }
@@ -12,6 +14,7 @@ export const Player: FC<IPlayerProps> = ({ content }) => {
 
   const videoRef = useRef<HTMLVideoElement>(null)
   const videoContainerRef = useRef<HTMLDivElement>(null)
+  const navigate = useRouter()
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -52,8 +55,11 @@ export const Player: FC<IPlayerProps> = ({ content }) => {
 
   return (
     <div className={styles.main} ref={videoContainerRef}>
-      <video poster={content.backdrop.url} ref={videoRef}>
-        <source src={content.videos.trailers[0].url} type="video/mp4" />
+      <button className={styles.back} onClick={() => navigate.back()}>
+        <IoMdArrowRoundBack size={32} />
+      </button>
+      <video poster={content.backdrop} ref={videoRef}>
+        <source src={content.trailer} type="video/mp4" />
       </video>
       <Controls {...{
         isPlaying,

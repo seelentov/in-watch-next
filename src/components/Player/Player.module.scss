@@ -35,5 +35,14 @@
   align-items: center;
 }
 .volume{
-  
+  appearance: slider-vertical;
+  translate: 0px -94px;
+}
+
+
+
+.back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }

@@ -1,12 +1,12 @@
 'use client'
 
-import { useIsAuth } from '@/core/hooks/useIsAuth';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import Hamburger from 'hamburger-react'
 import { MENU } from '@/core/config/menu.config';
 import { ROUTING } from '@/core/config/routing.config';
+import { useIsAuth } from '@/core/hooks/useIsAuth';
 import cn from 'classnames';
+import Hamburger from 'hamburger-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FC, useState } from 'react';
 import { FaFilm } from 'react-icons/fa6';
 import { Logout } from './Logout';
@@ -23,7 +23,7 @@ export const SidebarMenu: FC<{ genres: string[] }> = ({ genres }) => {
   return (
     <>
       <button onClick={() => setIsOpen(prev => !prev)} className={styles.burgerBtn}>
-        <Hamburger toggled={isOpen}/>
+        <Hamburger toggled={isOpen} />
       </button>
       <aside className={cn(styles.sidebar, isOpen && styles.open)}>
         <nav className={styles.menu} onClick={() => setIsOpen(false)}>
@@ -43,7 +43,7 @@ export const SidebarMenu: FC<{ genres: string[] }> = ({ genres }) => {
               {genres.map(genre =>
                 <li key={genre}>
                   <Link href={ROUTING.TAG + `/${genre}`}>
-                    <SidebarItem icon={<FaFilm size={24} />} text={genre} />
+                    <SidebarItem icon={<FaFilm size={24} />} text={genre} active={pathname.includes(genre)} />
                   </Link>
                 </li>)}
             </ul>
@@ -60,6 +60,17 @@ export const SidebarMenu: FC<{ genres: string[] }> = ({ genres }) => {
               <li>
                 <Logout />
               </li>
+            </ul>
+          </SidebarList>}
+          {!isAuth && <SidebarList>
+            <ul >
+              {MENU.NON_USER.map((menuItem) => (
+                <li key={menuItem.name}>
+                  <Link href={menuItem.link}>
+                    <SidebarItem icon={menuItem.icon} text={menuItem.name} active={pathname === menuItem.link} />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </SidebarList>}
         </nav>
