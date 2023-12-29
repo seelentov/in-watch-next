@@ -58,7 +58,6 @@ export const FilterForm: FC<IFilterProps> = ({ filter, mayValues }) => {
     values.country = values.country?.value || ''
     values.genres = values.genres?.value || ''
 
-    console.log(values)
     const filteredValues = clearEmptyAttrs(values)
     const params = new URLSearchParams(filteredValues)
 

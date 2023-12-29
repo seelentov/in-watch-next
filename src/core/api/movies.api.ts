@@ -15,7 +15,6 @@ export interface Response<T> {
 const BASE_URL = `${API_URL}api/movies`
 
 async function baseFetch<T>(url: string, options: any): Promise<Response<T>> {
-  console.log(url, 'server!')
   const response = await fetch(url, {
     ...options,
     headers: { 'Content-type': 'application/json' }

@@ -14,7 +14,6 @@ export const HeaderMenuMobile = () => {
   return (
     <div className={cn(styles.menuMobile, isOpen && styles.menuMobileisOpen)}>
       <button onClick={() => {
-        console.log('yes')
         setIsOpen(prev => !prev)
       }}>
         <Hamburger toggled={isOpen} />

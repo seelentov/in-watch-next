@@ -1,6 +1,9 @@
 'use client'
 
+import { login } from '@/core/api/account.api';
 import { ROUTING } from '@/core/config/routing.config';
+import { validEmailRegex } from '@/core/constants/validEmailRegex';
+import { useIsAuth } from '@/core/hooks/useIsAuth';
 import { useToken } from '@/core/hooks/useToken';
 import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
@@ -10,12 +13,13 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
-import { login } from '@/core/api/account.api';
+import { LoadingContext } from '../provider/LoadingProvider';
 
 
 export const Login = () => {
 
   const { setUser } = useContext(UserContext)
+  const isAuth = useIsAuth()
   const navigate = useRouter()
   const { token, setToken } = useToken()
 
@@ -28,7 +32,7 @@ export const Login = () => {
   } = useForm({
     defaultValues: {
       email: 'test@test.ru',
-      password: 'test@test.ru',
+      password: 'testtest',
     } as UserSignUp,
     mode: 'onChange',
   })
@@ -40,23 +44,29 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    if (token) {
+    if (isAuth) {
       navigate.push(`${ROUTING.HOME}`)
     }
 
-  }, [token])
+  }, [isAuth])
 
   const onSubmit = async (dt: UserSignUp) => {
     try {
       setError('root', {
         message: '',
       })
-      const user = await login(dt)
+      const { status, data } = await login(dt)
+      if (status !== 200) {
+        setError('root', {
+          message: data.message,
+        })
 
-      const { token, ...userData } = user
+      } else {
+        const { token, ...userData } = data
+        setToken(token)
+        setUser(userData)
+      }
 
-      setToken(token)
-      setUser(userData)
 
     } catch (error) {
       console.log(error)
@@ -65,9 +75,15 @@ export const Login = () => {
 
 
 
+
   return (
     <form className={styles.page} onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('email', { required: 'Введите E-mail!' })}
+      <input {...register('email', {
+        required: 'Введите E-mail!', pattern: {
+          value: validEmailRegex,
+          message: "Введите валидный E-mail"
+        }
+      })}
         className={cn(styles.input, errorsState.email && styles.error)}
         placeholder={errorsState.email ? errors.email?.message : 'E-mail'}
         type="email"
@@ -78,7 +94,7 @@ export const Login = () => {
         type="password"
       />
       <Button>Войти</Button>
-      <p className={styles.rootError}>{errorsState.root}</p>
+      <p className={styles.rootError}>{errors.root?.message}</p>
     </form>
   );
 }

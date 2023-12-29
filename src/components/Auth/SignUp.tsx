@@ -1,21 +1,31 @@
 'use client'
 
+import { signUp } from '@/core/api/account.api';
+import { ROUTING } from '@/core/config/routing.config';
+import { useIsAuth } from '@/core/hooks/useIsAuth';
+import { useToken } from '@/core/hooks/useToken';
 import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
-import { useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
+
 export const SignUp = () => {
 
   const { setUser } = useContext(UserContext)
+  const isAuth = useIsAuth()
+  const navigate = useRouter()
+  const { token, setToken } = useToken()
 
   const {
     register,
     handleSubmit,
     setError,
     resetField,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -23,7 +33,6 @@ export const SignUp = () => {
       password: '',
       login: ''
     } as UserSignUp,
-    mode: 'onChange',
   })
 
   const errorsState = {
@@ -33,60 +42,70 @@ export const SignUp = () => {
     root: Boolean(errors.root?.message),
   }
 
+  useEffect(() => {
+    if (isAuth) {
+      navigate.push(`${ROUTING.HOME}`)
+    }
 
+  }, [isAuth])
 
   const onSubmit = async (dt: UserSignUp) => {
-
-    await setError('root', {
+    setError('root', {
       message: '',
     })
-
-    //if (res.error) {
-    //  resetField('email')
-    //  resetField('password')
-    //  return setError('root', {
-    //    message: 'Wrong login or password',
-    //  })
-    //}
-
-
-    //if (res.error) {
-    //  return res.error.data.map((error: any) => {
-    //    resetField(error.path)
-    //    setError(error.path, {
-    //      message: error.msg,
-    //    })
-    //  })
-    //}
-
-    //const { token, ...user } = res.data
-
-    //localStorage.setItem('token', token)
-
-    //setUser(user)
+    const { status, data } = await signUp(dt)
+    if (status === 420) {
+      data.map((error: any) => {
+        setValue(error.path, '')
+        setError(error.path, {
+          type: 'custom',
+          message: error.msg
+        })
+      })
+    }
+    else if (status === 200){
+      const { token, ...userData } = data
+      setToken(token)
+      setUser(userData)
+    } 
+    else {
+      setError('root', { message: 'Ошибка при попытке регистрации'})
+    }
   }
 
 
 
   return (
     <form className={styles.page} onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('login', { required: 'Введите логин!' })}
-        className={cn(styles.input, errorsState.login && styles.error)}
-        type="text"
-        placeholder={errorsState.login ? errors.login?.message : 'Логин'}
-      />
-      <input {...register('email', { required: 'Введите E-mail!' })}
-        className={cn(styles.input, errorsState.email && styles.error)}
-        placeholder={errorsState.email ? errors.email?.message : 'E-mail'}
-        type="email"
-      />
-      <input {...register('password', { required: 'Введите пароль' })}
-        className={cn(styles.input, errorsState.password && styles.error)}
-        placeholder={errorsState.password ? errors.password?.message : 'Пароль'}
-        type="password"
-      />
+      <div className={styles.field}>
+        <input {...register('login', { required: 'Введите логин!' })}
+          className={cn(styles.input, errorsState.login && styles.error)}
+          type="text"
+          placeholder='Логин'
+        />
+        <p>{errors.login?.message}</p>
+      </div>
+
+      <div className={styles.field}>
+        <input {...register('email', { required: 'Введите E-mail!' })}
+          className={cn(styles.input, errorsState.email && styles.error)}
+          placeholder='E-mail'
+          type="email"
+        />
+        <p>{errors.email?.message}</p>
+
+      </div>
+      <div className={styles.field}>
+        <input {...register('password', { required: 'Введите пароль' })}
+          className={cn(styles.input, errorsState.password && styles.error)}
+          placeholder='Пароль'
+          type="password"
+        />
+        <p>{errors.password?.message}</p>
+      </div>
       <Button>Создать аккаунт</Button>
-      <p className={styles.rootError}>{errorsState.root}</p>
+
+      <p className={styles.rootError}>{errors?.root?.message}</p>
     </form>
   );
 }

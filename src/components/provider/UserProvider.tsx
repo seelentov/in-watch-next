@@ -16,7 +16,7 @@ interface IUserContext {
 export const UserContext = createContext({} as IUserContext)
 
 export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { token, setToken } = useToken()
+  const { token, clearToken, setToken } = useToken()
   const { setLoading } = useContext(LoadingContext)
   const initialState: User = {
     _id: '',
@@ -30,15 +30,26 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>(initialState)
 
   useEffect(() => {
-    getMe(token)
-      .then(setUser)
-      .then(() => setLoading(false))
+  const fetchData = async () => {
+    const response = await getMe(token)
+    if(response.status === 200){
+      const { token, ...userData } = response.data
+      setToken(token)
+      setUser(userData)
+      setLoading(false)
+    } else {
+      setLoading(false)
+    }
+    
+  }
+  fetchData()
   }, [token])
 
 
   const logout = () => {
     setUser(initialState)
-    setToken('')
+    clearToken()
+    alert('Вы успешно вышли из аккаунта!')
   }
 
   return <UserContext.Provider value={{ user, setUser, logout }}>

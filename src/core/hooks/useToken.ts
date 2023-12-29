@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 interface useToken{
   token: string
   setToken: (arg0: string) => void
+  clearToken: () => void
 }
 
 export const useToken = (): useToken => {
@@ -20,5 +21,9 @@ export const useToken = (): useToken => {
     setState(newToken)
   }
 
-  return {token: state, setToken}
+  const clearToken = () => {
+    localStorage.removeItem('token')
+  }
+
+  return {token: state, setToken, clearToken}
 }

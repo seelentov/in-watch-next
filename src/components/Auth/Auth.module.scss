@@ -25,3 +25,15 @@
   color: var(--color-err);
   text-align: center;
 }
+
+.field{
+  input{
+    width: 100%;
+  }
+  p{
+    min-height: 24px;
+    width: 100%;
+    text-align: center;
+    color: var(--color-err);
+  }
+}
