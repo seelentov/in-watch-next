@@ -11,4 +11,7 @@ export interface Movie {
   country: string
   trailer: string
   genres: string[]
+  likes: number
+  views: number
+  viewsMonth: number
 }

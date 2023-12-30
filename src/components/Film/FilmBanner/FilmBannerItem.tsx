@@ -51,6 +51,7 @@ export const FilmBannerItem: FC<IFilmBannerItemProps> = ({ film, isMorePage, hea
 
         <p>{film.year} | {film.genres[0]} | {displayDuration}</p>
         {!isMorePage && <p>{film.description}</p>}
+        <p>Нравится: {film.likes} | Просмотров: {film.views} ({film.viewsMonth} в этом месяце)</p>
         <div className={styles.buttons}>
           <Link href={watchLink}>
             <Button>Смотреть</Button>

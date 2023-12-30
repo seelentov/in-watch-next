@@ -69,7 +69,7 @@ const FilmListReceit: FC<IFilmListReceitProps> = ({ view = 'grid', limit = 0 }) 
           {films.map(film =>
             <FilmItem key={film._id} film={film} />
           )}
-          {fetching && Array.from(new Array(8)).map((_, key) =>
+          {fetching && Array.from(new Array(6)).map((_, key) =>
             <FilmItemSkeleton key={key} />
           )}
         </div>
@@ -85,7 +85,7 @@ const FilmListReceit: FC<IFilmListReceitProps> = ({ view = 'grid', limit = 0 }) 
           <SwiperSlide key={film._id}>
             <FilmItem film={film} />
           </SwiperSlide>)}
-        {fetching && Array.from(new Array(8)).map((_, key) =>
+        {fetching && Array.from(new Array(6)).map((_, key) =>
           <SwiperSlide key={key}>
             <FilmItemSkeleton />
           </SwiperSlide>
