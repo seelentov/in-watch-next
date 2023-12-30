@@ -16,7 +16,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.id
 
-  const film = await getOneAndWatch(id)
+  const film = await getOne(id)
   return {
     title: film.name,
     description: film.description,
@@ -27,11 +27,11 @@ export async function generateMetadata(
 export default async function PlayerPage({ params }: IPlayerPageProps) {
 
   const id = params.id
-  const { trailer } = await getOne(id)
+
   return (
 
     <div className={styles.main}>
-      {trailer ? <Player url={trailer} /> : <Custom404 />}
+     <Player id={id} />
     </div>
 
   )

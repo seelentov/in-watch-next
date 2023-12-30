@@ -1,7 +1,6 @@
 'use client'
 
 import { getMe } from '@/core/api/account.api';
-import { useToken } from '@/core/hooks/useToken';
 import User from '@/core/types/user';
 import { Dispatch, FC, PropsWithChildren, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
 import { LoadingContext } from './LoadingProvider';
@@ -17,7 +16,6 @@ interface IUserContext {
 export const UserContext = createContext({} as IUserContext)
 
 export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { token, clearToken, setToken } = useToken()
   const { setLoading } = useContext(LoadingContext)
   const initialState: User = {
     _id: '',
@@ -32,19 +30,18 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMe(token)
+      
+      const response = await getMe(localStorage.getItem('token') || '')
       if (response.status === 200) {
-        const { token, ...userData } = response.data
-        setToken(token)
-        setUser(userData)
+        setUser(response.data)
         setLoading(false)
       } else {
         setLoading(false)
       }
-
     }
     fetchData()
-  }, [token])
+    
+  }, [localStorage.getItem('token')])
 
 
   const updateFavorite = (newFavorite: string[]) => {
@@ -53,7 +50,7 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const logout = () => {
     setUser(initialState)
-    clearToken()
+    localStorage.removeItem('token')
     alert('Вы успешно вышли из аккаунта!')
   }
 

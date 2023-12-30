@@ -17,7 +17,7 @@ const BASE_URL = `${API_URL}api/movies`
 async function baseFetch<T>(url: string, options: any): Promise<Response<T>> {
   const response = await fetch(url, {
     ...options,
-    headers: { 'Content-type': 'application/json' }
+    headers: { 'Content-type': 'application/json', ...options.headers }
   })
   if (response.ok) {
     return response.json();
@@ -35,9 +35,11 @@ export async function getOne(id: string): Promise<Movie> {
   }
 }
 
-export async function getOneAndWatch(id: string): Promise<Movie> {
+export async function getOneAndWatch(id: string, token: string): Promise<Movie> {
   try {
-    const data = await baseFetch<Movie>(`${BASE_URL}/${id}?view=true`, {});
+    const data = await baseFetch<Movie>(`${BASE_URL}/${id}?view=true`, {
+      headers: { Authorization: token },
+    });
     return data as any;
   } catch (error) {
     alert(`Ошибка при получении данных: ${error}`)

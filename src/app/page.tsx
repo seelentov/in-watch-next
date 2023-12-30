@@ -1,5 +1,6 @@
 import { FilmBanner } from "@/components/Film/FilmBanner/FilmBanner"
 import FilmList from "@/components/Film/FilmList/FilmList"
+import FilmListReceit from "@/components/Film/FilmListReceit/FilmListReceit"
 import { getAllByFilter } from "@/core/api/movies.api"
 import { Filter } from "@/core/types/filter"
 
@@ -36,6 +37,7 @@ export default async function HomePage() {
       <div className='content-main'>
         <h2>В этом месяце</h2>
         <FilmList query={trandQuery} view="slider" />
+        <FilmListReceit view="slider"/>
         <h2>Лучшее</h2>
         <FilmList query={bestQuery} view="slider" />
         <h2>Популярное</h2>

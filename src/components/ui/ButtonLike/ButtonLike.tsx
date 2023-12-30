@@ -3,7 +3,6 @@
 import { UserContext } from '@/components/provider/UserProvider';
 import { addFavorite, removeFavorite } from '@/core/api/account.api';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
-import { useToken } from '@/core/hooks/useToken';
 import { FC, useContext, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
@@ -20,7 +19,6 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
 }) => {
 
   const { user, updateFavorite } = useContext(UserContext)
-  const { token } = useToken()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const iconSize = size === 's' ? '14px' : '24px'
   const buttonSize = size === 's' ? '32px' : '54px'
@@ -32,9 +30,9 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
     event.preventDefault()
     let response
     if (!toggled) {
-      response = await addFavorite([_id], token)
+      response = await addFavorite([_id], localStorage.getItem('token') || '')
     } else {
-      response = await removeFavorite([_id], token)
+      response = await removeFavorite([_id], localStorage.getItem('token') || '')
     }
 
     if (response.status !== 200) {

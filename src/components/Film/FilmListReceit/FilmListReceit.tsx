@@ -1,24 +1,24 @@
 'use client'
 
-import { getFavorite } from '@/core/api/account.api';
+import { getReceit } from '@/core/api/account.api';
+import { ROUTING } from '@/core/config/routing.config';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
 import { Movie } from '@/core/types/movie';
+import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import "swiper/css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
 import { FilmItemSkeleton } from '../FilmItemSkeleton/FilmItemSkeleton';
-import styles from './FilmListFavorites.module.scss';
-import { ROUTING } from '@/core/config/routing.config';
-import { useRouter } from 'next/navigation';
+import styles from './FilmListReceit.module.scss';
 
-export interface IFilmListFavoriteProps {
+export interface IFilmListReceitProps {
   view?: 'grid' | 'slider'
 }
 
 
-const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
+const FilmListReceit: FC<IFilmListReceitProps> = ({ view = 'grid' }) => {
 
   const [films, setFilms] = useState<Movie[]>([])
   const [fetching, setFetching] = useState<boolean>(true)
@@ -35,7 +35,7 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, status } = await getFavorite(localStorage.getItem('token') || '')
+      const { data, status } = await getReceit(localStorage.getItem('token') || '')
       if (status === 200) {
         setFilms(data)
         setFetching(false)
@@ -48,10 +48,8 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
 
 
 
-
-
-  if (films.length === 0 && !fetching) {
-    return <p>Ничего не найдено</p>
+  if(!isAuth || (films.length === 0 && !fetching)){
+    return
   }
 
   if (view === 'grid') {
@@ -70,6 +68,8 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
   }
 
   return (
+    <>
+    <h2>История просмотров</h2>
     <Swiper {...SWIPER_CONFIG.LIST}>
       {films.map(film =>
         <SwiperSlide key={film._id}>
@@ -81,9 +81,10 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
         </SwiperSlide>
       )}
     </Swiper>
+    </>
   )
 
 
 }
 
-export default FilmListFavorite
+export default FilmListReceit

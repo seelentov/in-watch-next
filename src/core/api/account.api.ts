@@ -57,6 +57,13 @@ export async function getFavorite(token: string) {
   return response;
 }
 
+export async function getReceit(token: string) {
+  const response = await baseFetch(`${BASE_URL}receit`, {
+    headers: { Authorization: token },
+  });
+  return response;
+}
+
 export async function addFavorite(ids: string[], token: string) {
   const response = await baseFetch(`${BASE_URL}favorite?action=add`, {
     headers: { Authorization: token },

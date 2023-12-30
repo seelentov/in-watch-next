@@ -3,7 +3,6 @@
 import { signUp } from '@/core/api/account.api';
 import { ROUTING } from '@/core/config/routing.config';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
-import { useToken } from '@/core/hooks/useToken';
 import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
@@ -18,7 +17,6 @@ export const SignUp = () => {
   const { setUser } = useContext(UserContext)
   const isAuth = useIsAuth()
   const navigate = useRouter()
-  const { token, setToken } = useToken()
 
   const {
     register,
@@ -65,7 +63,7 @@ export const SignUp = () => {
     }
     else if (status === 200){
       const { token, ...userData } = data
-      setToken(token)
+      localStorage.setItem('token', token)
       setUser(userData)
     } 
     else {

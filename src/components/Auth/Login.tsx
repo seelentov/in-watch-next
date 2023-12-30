@@ -4,7 +4,6 @@ import { login } from '@/core/api/account.api';
 import { ROUTING } from '@/core/config/routing.config';
 import { validEmailRegex } from '@/core/constants/validEmailRegex';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
-import { useToken } from '@/core/hooks/useToken';
 import { UserSignUp } from '@/core/types/user';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
@@ -20,7 +19,6 @@ export const Login = () => {
   const { setUser, user } = useContext(UserContext)
   const isAuth = useIsAuth()
   const navigate = useRouter()
-  const { token, setToken } = useToken()
 
   const {
     register,
@@ -62,7 +60,7 @@ export const Login = () => {
 
       } else {
         const { token, ...userData } = data
-        setToken(token)
+        localStorage.setItem('token', token)
         setUser(userData)
       }
 
