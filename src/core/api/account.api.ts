@@ -49,3 +49,28 @@ export async function getMe(token: string) {
   });
   return response;
 }
+
+export async function getFavorite(token: string) {
+  const response = await baseFetch(`${BASE_URL}favorite`, {
+    headers: { Authorization: token },
+  });
+  return response;
+}
+
+export async function addFavorite(ids: string[], token: string) {
+  const response = await baseFetch(`${BASE_URL}favorite?action=add`, {
+    headers: { Authorization: token },
+    method: 'PATCH',
+    body: JSON.stringify({ids: ids})
+  });
+  return response;
+}
+
+export async function removeFavorite(ids: string[], token: string) {
+  const response = await baseFetch(`${BASE_URL}favorite?action=del`, {
+    headers: { Authorization: token },
+    method: 'PATCH',
+    body: JSON.stringify({ids: ids})
+  });
+  return response;
+}

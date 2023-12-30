@@ -35,6 +35,16 @@ export async function getOne(id: string): Promise<Movie> {
   }
 }
 
+export async function getOneAndWatch(id: string): Promise<Movie> {
+  try {
+    const data = await baseFetch<Movie>(`${BASE_URL}/${id}?view=true`, {});
+    return data as any;
+  } catch (error) {
+    alert(`Ошибка при получении данных: ${error}`)
+    throw new Error("Failed to get movie");
+  }
+}
+
 export async function getAll(): Promise<Response<Movie[]>> {
   try {
     const data = await baseFetch<Movie[]>(BASE_URL, {});

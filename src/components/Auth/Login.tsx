@@ -13,12 +13,11 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
-import { LoadingContext } from '../provider/LoadingProvider';
 
 
 export const Login = () => {
 
-  const { setUser } = useContext(UserContext)
+  const { setUser, user } = useContext(UserContext)
   const isAuth = useIsAuth()
   const navigate = useRouter()
   const { token, setToken } = useToken()

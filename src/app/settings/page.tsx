@@ -2,8 +2,8 @@
 
 export default function SettingsPage() {
   return (
-    <div>
-
+    <div className="content">
+      
     </div>
   )
 }

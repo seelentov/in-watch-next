@@ -3,14 +3,13 @@
 import { Movie } from '@/core/types/movie';
 import { useRouter } from 'next/navigation';
 import { FC, useRef, useState } from 'react';
-import { Controls } from './Controls';
 import styles from './Player.module.scss';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import ReactPlayer from 'react-player';
 export interface IPlayerProps {
-  content: Movie
+  url: string
 }
 
-export const Player: FC<IPlayerProps> = ({ content }) => {
+export const Player: FC<IPlayerProps> = ({ url }) => {
 
   const videoRef = useRef<HTMLVideoElement>(null)
   const videoContainerRef = useRef<HTMLDivElement>(null)
@@ -54,21 +53,13 @@ export const Player: FC<IPlayerProps> = ({ content }) => {
 
 
   return (
-    <div className={styles.main} ref={videoContainerRef}>
-      <button className={styles.back} onClick={() => navigate.back()}>
-        <IoMdArrowRoundBack size={32} />
-      </button>
-      <video poster={content.backdrop} ref={videoRef}>
-        <source src={content.trailer} type="video/mp4" />
-      </video>
-      <Controls {...{
-        isPlaying,
-        handlePlayPause,
-        handleVolumeChange,
-        volume,
-        handleFullScreen,
-        isFullScreen
-      }} />
-    </div>
+      <ReactPlayer
+        className='react-player fixed-bottom'
+        url={url}
+        width='100%'
+        height='100%'
+        controls={true}
+      />
+
   )
 }
