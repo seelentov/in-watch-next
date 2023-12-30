@@ -1,17 +1,18 @@
 'use client'
 
 import { getFavorite } from '@/core/api/account.api';
+import { ROUTING } from '@/core/config/routing.config';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
 import { useIsAuth } from '@/core/hooks/useIsAuth';
 import { Movie } from '@/core/types/movie';
-import { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useContext, useEffect, useState } from 'react';
 import "swiper/css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
 import { FilmItemSkeleton } from '../FilmItemSkeleton/FilmItemSkeleton';
 import styles from './FilmListFavorites.module.scss';
-import { ROUTING } from '@/core/config/routing.config';
-import { useRouter } from 'next/navigation';
+import { UserContext } from '@/components/provider/UserProvider';
 
 export interface IFilmListFavoriteProps {
   view?: 'grid' | 'slider'
@@ -24,6 +25,7 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
   const [fetching, setFetching] = useState<boolean>(true)
   const isAuth = useIsAuth()
   const navigate = useRouter()
+  const { user } = useContext(UserContext)
 
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
       }
     }
     fetchData()
-  }, [localStorage.getItem('token')])
+  }, [localStorage.getItem('token'), user.favorites])
 
 
 

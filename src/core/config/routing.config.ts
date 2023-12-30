@@ -10,7 +10,8 @@ export const ROUTING = {
   SETTINGS: '/settings',
   PLAYER: '/player',
   SEARCH: '/search',
-  TAG: '/tag'
+  TAG: '/tag',
+  RECEIT: '/receit'
 } as const
 
 export type ROUTING = (typeof ROUTING)[keyof typeof ROUTING]

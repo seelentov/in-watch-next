@@ -1,6 +1,6 @@
 import { ROUTING } from "@/core/config/routing.config"
 import { FaArrowUpWideShort, FaFilm, FaHeart } from "react-icons/fa6"
-import { IoMdSettings } from "react-icons/io"
+import { IoMdSettings, IoMdTime } from "react-icons/io"
 import { IoSearchSharp } from "react-icons/io5"
 import { RiLogoutBoxFill } from "react-icons/ri"
 
@@ -27,6 +27,11 @@ export const MENU = {
       link: ROUTING.FAVORITES,
       icon: <FaHeart size={24} />,
       name: 'Любимое'
+    },
+    {
+      link: ROUTING.RECEIT,
+      icon: <IoMdTime size={24} />,
+      name: 'История'
     },
     {
       link: ROUTING.SETTINGS,

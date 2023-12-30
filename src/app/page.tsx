@@ -7,7 +7,7 @@ import { Filter } from "@/core/types/filter"
 export default async function HomePage() {
 
   const { data: bannerList } = await getAllByFilter({
-    order: 'rating',
+    order: 'createdAt',
     showInBanner: 'true',
     page_limit: 3,
     orderDir: 'desc'
@@ -37,7 +37,7 @@ export default async function HomePage() {
       <div className='content-main'>
         <h2>В этом месяце</h2>
         <FilmList query={trandQuery} view="slider" />
-        <FilmListReceit view="slider"/>
+        <FilmListReceit view="slider" limit={10}/>
         <h2>Лучшее</h2>
         <FilmList query={bestQuery} view="slider" />
         <h2>Популярное</h2>

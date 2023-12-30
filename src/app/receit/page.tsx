@@ -1,9 +1,9 @@
-import FilmListFavorite from "@/components/Film/FilmListFavorites/FilmListFavorites";
+import FilmListReceit from "@/components/Film/FilmListReceit/FilmListReceit";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Избранное',
+    title: 'Ваша история просмотров',
     description: 'То, что выбираете вы!',
     robots: {
       index: false,
@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function FavoritePage() {
   return (
     <div className="content">
-      <h1>Избранное</h1>
-      <FilmListFavorite />
+      <h1>История просмотров</h1>
+      <FilmListReceit />
     </div>
   )
 }

@@ -12,6 +12,7 @@ const BASE_URL = `${API_URL}api/auth/`
 async function baseFetch(url: string, options: any) {
     const response = await fetch(url, {
       ...options,
+      cache: 'no-store',
       headers: { 'Content-Type': 'application/json', ...options.headers }
     });
 
