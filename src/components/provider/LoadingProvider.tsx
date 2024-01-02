@@ -18,6 +18,9 @@ export const LoadingProvider: FC<PropsWithChildren> = ({ children }) => {
     {loading ?
       <UserProvider>
         <Loading />
-      </UserProvider> : children}
+      </UserProvider> : 
+      <UserProvider>
+        {children}
+      </UserProvider>}
   </LoadingContext.Provider>;
 }

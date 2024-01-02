@@ -4,6 +4,7 @@ import { getMe } from '@/core/api/account.api';
 import User from '@/core/types/user';
 import { Dispatch, FC, PropsWithChildren, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
 import { LoadingContext } from './LoadingProvider';
+import { NotifContext } from './NotifProvider';
 
 
 interface IUserContext {
@@ -27,21 +28,23 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
     receit: []
   }
   const [user, setUser] = useState<User>(initialState)
+  const { toast } = useContext(NotifContext)
 
   useEffect(() => {
     const fetchData = async () => {
-      
+
       const response = await getMe(localStorage.getItem('token') || '')
       if (response.status === 200) {
         setUser(response.data)
+        toast.success(`${response.data.login}, добро пожаловать!`)
         setLoading(false)
       } else {
         setLoading(false)
       }
     }
     fetchData()
-    
-  }, [localStorage.getItem('token')])
+
+  }, [])
 
 
   const updateFavorite = (newFavorite: string[]) => {
@@ -51,7 +54,6 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
   const logout = () => {
     setUser(initialState)
     localStorage.removeItem('token')
-    alert('Вы успешно вышли из аккаунта!')
   }
 
   return <UserContext.Provider value={{ user, setUser, logout, updateFavorite }}>

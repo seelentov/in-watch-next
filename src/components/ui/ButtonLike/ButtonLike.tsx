@@ -8,6 +8,7 @@ import { IconContext } from 'react-icons';
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { BeatLoader } from 'react-spinners';
 import styles from './ButtonLike.module.scss';
+import { NotifContext } from '@/components/provider/NotifProvider';
 
 export interface IButtonLikeProps {
   size?: 's' | 'm'
@@ -24,29 +25,27 @@ export const ButtonLike: FC<IButtonLikeProps> = ({
   const buttonSize = size === 's' ? '32px' : '54px'
   const isAuth = useIsAuth()
   const toggled = user?.favorites?.some(filmId => filmId === _id)
+  const { toast } = useContext(NotifContext)
 
   const handleClick = async (event: any) => {
     setIsLoading(true)
     event.preventDefault()
     let response
+    let message
     if (!toggled) {
-      response = await addFavorite([_id], localStorage.getItem('token') || '')
+      response = await addFavorite([_id], localStorage.getItem('token') || '');message = `Фильм добавлен в вашу коллекцию избранного`
     } else {
-      response = await removeFavorite([_id], localStorage.getItem('token') || '')
+      response = await removeFavorite([_id], localStorage.getItem('token') || '');
+      message = `Фильм удален из вашей коллекции избранного`
     }
 
     if (response.status !== 200) {
-      console.log({
-        status: response.status,
-        message: response.data
-      })
-      alert(response.data)
+      toast.error(response.data.message)
       setIsLoading(false)
     } else {
+      toast.success(message)
       updateFavorite(response.data)
       setIsLoading(false)
-
-      //updateFavorite(response.data)
     }
   }
 

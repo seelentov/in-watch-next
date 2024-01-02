@@ -15,6 +15,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.id
   const film = await getOne(id)
+
   return {
     title: film.name,
     description: film.description,
@@ -25,6 +26,7 @@ export async function generateMetadata(
 export default async function FilmPage({ params }: IFilmPageProps) {
 
   const film = await getOne(params.id)
+
   if (!film) {
     return <div className={styles.notFound}><Custom404 /></div>
   }

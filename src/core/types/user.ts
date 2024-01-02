@@ -13,6 +13,17 @@ export type UserLogin = Omit<User, '_id' | 'login' | 'avatarUrl' | 'role' | 'rec
   password: string
 }
 
+export type UserUpdateInfo = {
+  login: string
+  email?: string
+}
+
+export type UserUpdatePassword = {
+  newPassword: string
+  confirmNewPassword: string
+  password: string
+}
+
 
 export type UserSignUp = Omit<User, '_id' | 'role' | 'receit' | 'favorite'> & {
   password: string

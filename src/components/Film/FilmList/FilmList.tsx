@@ -37,6 +37,7 @@ const FilmList: FC<IFilmListProps> = ({ query, view = 'grid' }) => {
         setEntries(r.entries)
       })
       .then(() => setFetching(false))
+      .catch(() => setFetching(false))
   }, [limit, query])
 
   useEffect(() => {

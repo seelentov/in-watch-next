@@ -22,7 +22,7 @@ async function baseFetch<T>(url: string, options: any): Promise<Response<T>> {
   if (response.ok) {
     return response.json();
   }
-  throw new Error("Request failed");
+  throw new Error(`Ошибка при запросе: ${url}`);
 }
 
 export async function getOne(id: string): Promise<Movie> {

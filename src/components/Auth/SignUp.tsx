@@ -11,12 +11,14 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
+import { NotifContext } from '../provider/NotifProvider';
 
 export const SignUp = () => {
 
   const { setUser } = useContext(UserContext)
   const isAuth = useIsAuth()
   const navigate = useRouter()
+  const { toast } = useContext(NotifContext)
 
   const {
     register,
@@ -37,7 +39,6 @@ export const SignUp = () => {
     login: Boolean(errors.login?.message),
     email: Boolean(errors.email?.message),
     password: Boolean(errors.password?.message),
-    root: Boolean(errors.root?.message),
   }
 
   useEffect(() => {
@@ -48,9 +49,6 @@ export const SignUp = () => {
   }, [isAuth])
 
   const onSubmit = async (dt: UserSignUp) => {
-    setError('root', {
-      message: '',
-    })
     const { status, data } = await signUp(dt)
     if (status === 420) {
       data.map((error: any) => {
@@ -61,13 +59,13 @@ export const SignUp = () => {
         })
       })
     }
-    else if (status === 200){
+    else if (status === 200) {
       const { token, ...userData } = data
       localStorage.setItem('token', token)
       setUser(userData)
-    } 
+    }
     else {
-      setError('root', { message: 'Ошибка при попытке регистрации'})
+      toast.error(data.message)
     }
   }
 
@@ -102,8 +100,6 @@ export const SignUp = () => {
         <p>{errors.password?.message}</p>
       </div>
       <Button>Создать аккаунт</Button>
-
-      <p className={styles.rootError}>{errors?.root?.message}</p>
     </form>
   );
 }

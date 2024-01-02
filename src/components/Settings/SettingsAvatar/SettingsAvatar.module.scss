@@ -1,0 +1,34 @@
+.main{
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    object-fit: cover;
+  }
+  label{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.editIcon{
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-main);
+  border-radius: 50%;
+  transition: all .2s;
+  &:hover{
+  background-color: var(--color-background);
+  }
+}

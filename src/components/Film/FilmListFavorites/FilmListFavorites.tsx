@@ -1,5 +1,6 @@
 'use client'
 
+import { UserContext } from '@/components/provider/UserProvider';
 import { getFavorite } from '@/core/api/account.api';
 import { ROUTING } from '@/core/config/routing.config';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
@@ -12,7 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
 import { FilmItemSkeleton } from '../FilmItemSkeleton/FilmItemSkeleton';
 import styles from './FilmListFavorites.module.scss';
-import { UserContext } from '@/components/provider/UserProvider';
+import { NotifContext } from '@/components/provider/NotifProvider';
 
 export interface IFilmListFavoriteProps {
   view?: 'grid' | 'slider'
@@ -41,8 +42,6 @@ const FilmListFavorite: FC<IFilmListFavoriteProps> = ({ view = 'grid' }) => {
       if (status === 200) {
         setFilms(data)
         setFetching(false)
-      } else {
-        console.log(status, data)
       }
     }
     fetchData()

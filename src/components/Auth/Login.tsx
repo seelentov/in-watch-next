@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../provider/UserProvider';
 import { Button } from '../ui/Button/Button';
 import styles from './Auth.module.scss';
+import { NotifContext } from '../provider/NotifProvider';
 
 
 export const Login = () => {
@@ -19,12 +20,10 @@ export const Login = () => {
   const { setUser, user } = useContext(UserContext)
   const isAuth = useIsAuth()
   const navigate = useRouter()
-
+  const {toast} = useContext(NotifContext)
   const {
     register,
     handleSubmit,
-    setError,
-    resetField,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -37,7 +36,6 @@ export const Login = () => {
   const errorsState = {
     email: Boolean(errors.email?.message),
     password: Boolean(errors.password?.message),
-    root: Boolean(errors.root?.message),
   }
 
   useEffect(() => {
@@ -48,26 +46,15 @@ export const Login = () => {
   }, [isAuth])
 
   const onSubmit = async (dt: UserSignUp) => {
-    try {
-      setError('root', {
-        message: '',
-      })
       const { status, data } = await login(dt)
       if (status !== 200) {
-        setError('root', {
-          message: data.message,
-        })
-
+        toast.error(data.message)
       } else {
         const { token, ...userData } = data
         localStorage.setItem('token', token)
         setUser(userData)
       }
 
-
-    } catch (error) {
-      console.log(error)
-    }
   }
 
 
@@ -91,7 +78,6 @@ export const Login = () => {
         type="password"
       />
       <Button>Войти</Button>
-      <p className={styles.rootError}>{errors.root?.message}</p>
     </form>
   );
 }

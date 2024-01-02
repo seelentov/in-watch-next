@@ -1,5 +1,6 @@
 'use client'
 
+import { UserContext } from '@/components/provider/UserProvider';
 import { getReceit } from '@/core/api/account.api';
 import { ROUTING } from '@/core/config/routing.config';
 import SWIPER_CONFIG from '@/core/config/swiper.config';
@@ -12,7 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FilmItem } from '../FilmItem/FilmItem';
 import { FilmItemSkeleton } from '../FilmItemSkeleton/FilmItemSkeleton';
 import styles from './FilmListReceit.module.scss';
-import { UserContext } from '@/components/provider/UserProvider';
+import { NotifContext } from '@/components/provider/NotifProvider';
 
 export interface IFilmListReceitProps {
   view?: 'grid' | 'slider'
@@ -26,7 +27,7 @@ const FilmListReceit: FC<IFilmListReceitProps> = ({ view = 'grid', limit = 0 }) 
   const [fetching, setFetching] = useState<boolean>(true)
   const isAuth = useIsAuth()
   const navigate = useRouter()
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     if (!isAuth) {
@@ -45,12 +46,10 @@ const FilmListReceit: FC<IFilmListReceitProps> = ({ view = 'grid', limit = 0 }) 
           setFilms(data.slice(0, limit))
         }
         setFetching(false)
-      } else {
-        console.log(status, data)
       }
     }
     fetchData()
-  }, [localStorage.getItem('token'),user.receit])
+  }, [localStorage.getItem('token'), user.receit])
 
 
 

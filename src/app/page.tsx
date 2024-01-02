@@ -35,11 +35,13 @@ export default async function HomePage() {
     <>
       <FilmBanner films={bannerList} />
       <div className='content-main'>
+        
+        <FilmListReceit view="slider" limit={10}/>
         <h2>В этом месяце</h2>
         <FilmList query={trandQuery} view="slider" />
-        <FilmListReceit view="slider" limit={10}/>
         <h2>Лучшее</h2>
         <FilmList query={bestQuery} view="slider" />
+        
         <h2>Популярное</h2>
         <FilmList query={popularQuery} view="slider" />
       </div>
