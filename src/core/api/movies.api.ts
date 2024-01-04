@@ -1,8 +1,8 @@
 'use server'
 
-import { API_URL } from "../config/config";
 import { Filter, FilterValues } from "../types/filter";
 import { Movie } from "../types/movie";
+import { API_URL } from "./api";
 
 export interface Response<T> {
   data: T

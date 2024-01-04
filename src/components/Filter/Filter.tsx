@@ -14,14 +14,6 @@ import { Button } from '../ui/Button/Button';
 import { CustomSelect } from '../ui/Select/Select';
 import styles from './Filter.module.scss';
 
-/**
-  order?: string
-  orderDir?: string
-  ageRating?: string
-  country?: string
-  genres?: string
- */
-
 export interface IFilterProps {
   filter?: Filter
   mayValues: FilterValues

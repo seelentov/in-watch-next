@@ -1,9 +1,9 @@
-import Custom404 from "@/app/not-found";
+import Custom404 from "@/app/(client)/not-found";
 import { FilmBannerItem } from "@/components/Film/FilmBanner/FilmBannerItem";
 import { FilmMore } from '@/components/Film/FilmMore/FilmMore';
+import { getOne } from "@/core/api/movies.api";
 import { Metadata } from "next";
 import styles from './FilmPage.module.scss';
-import { getOne } from "@/core/api/movies.api";
 
 
 interface IFilmPageProps {

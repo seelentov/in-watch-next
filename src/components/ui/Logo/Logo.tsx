@@ -11,7 +11,6 @@ export const Logo: FC<ILogoProps> = () => {
 
   return (
     <div className={styles.logo}>
-      
       <Image src="/logo.svg" alt={'inWatch'} width={32} height={32}/>
       <div>
       <span>in</span><span>Watch</span>

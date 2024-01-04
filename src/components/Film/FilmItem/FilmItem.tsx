@@ -1,11 +1,11 @@
-import { API_URL } from '@/core/config/config';
+import { ButtonLike } from '@/components/ui/ButtonLike/ButtonLike';
 import { ROUTING } from '@/core/config/routing.config';
 import { Movie } from '@/core/types/movie';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import styles from './FilmItem.module.scss';
-import { ButtonLike } from '@/components/ui/ButtonLike/ButtonLike';
+import { API_URL } from '@/core/api/api';
 export interface IFilmsItemProps {
   film: Movie
 }

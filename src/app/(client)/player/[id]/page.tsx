@@ -1,9 +1,8 @@
 
-import Custom404 from "@/app/not-found"
 import { Player } from "@/components/Player/Player"
 import styles from './PlayerPage.module.scss'
 
-import { getOne, getOneAndWatch } from "@/core/api/movies.api"
+import { getOne } from "@/core/api/movies.api"
 import { Metadata } from "next"
 
 
@@ -31,7 +30,7 @@ export default async function PlayerPage({ params }: IPlayerPageProps) {
   return (
 
     <div className={styles.main}>
-     <Player id={id} />
+      <Player id={id} />
     </div>
 
   )

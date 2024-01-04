@@ -1,4 +1,4 @@
-import { API_URL } from "../config/config";
+import { API_URL } from "./api";
 
 const BASE_URL = `${API_URL}api/auth/`
 
@@ -6,7 +6,7 @@ async function baseFetch(url: string, options: any) {
   const response = await fetch(url, {
     ...options,
     cache: 'no-store',
-    headers: {...options.headers }
+    headers: { ...options.headers }
   });
 
   const data = await response.json();

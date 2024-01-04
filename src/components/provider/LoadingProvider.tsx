@@ -1,8 +1,8 @@
 'use client'
 
-import Loading from '@/app/loading';
 import { Dispatch, FC, PropsWithChildren, SetStateAction, createContext, useState } from 'react';
 import { UserProvider } from './UserProvider';
+import Loading from '@/app/(client)/loading';
 
 
 interface ILoadingContext {
@@ -18,7 +18,7 @@ export const LoadingProvider: FC<PropsWithChildren> = ({ children }) => {
     {loading ?
       <UserProvider>
         <Loading />
-      </UserProvider> : 
+      </UserProvider> :
       <UserProvider>
         {children}
       </UserProvider>}

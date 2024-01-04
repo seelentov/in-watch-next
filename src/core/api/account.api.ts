@@ -1,7 +1,7 @@
 'use server'
 
-import { API_URL } from "../config/config";
 import { UserLogin, UserUpdateInfo, UserUpdatePassword } from "../types/user";
+import { API_URL } from "./api";
 
 
 
