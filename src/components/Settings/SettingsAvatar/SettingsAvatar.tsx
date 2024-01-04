@@ -3,11 +3,11 @@
 import { NotifContext } from '@/components/provider/NotifProvider';
 import { UserContext } from '@/components/provider/UserProvider';
 import { changeAvatarUrl } from '@/core/api/account.api.client';
+import { API_URL } from '@/core/api/api';
 import Image from 'next/image';
 import { ChangeEvent, FC, useContext, useState } from 'react';
 import { FaEdit } from "react-icons/fa";
 import { BeatLoader } from 'react-spinners';
-import { API_URL } from '../../../core/config/config';
 import styles from './SettingsAvatar.module.scss';
 export interface ISettingsAvatarProps {
   avatarUrl: string
@@ -62,7 +62,7 @@ export const SettingsAvatar: FC<ISettingsAvatarProps> = ({ avatarUrl }) => {
           {loading ? <BeatLoader
             color="#fff"
             size={6}
-          /> : <FaEdit size={30}/>}
+          /> : <FaEdit size={30} />}
 
         </div>
         <input type="file" onChange={handleChange} hidden />

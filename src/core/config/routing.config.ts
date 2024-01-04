@@ -15,6 +15,4 @@ export const ROUTING = {
     MOVIES: '/admin/movies',
     USERS: '/admin/users',
   }
-} as const
-
-export type ROUTING = (typeof ROUTING)[keyof typeof ROUTING]
+}

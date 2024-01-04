@@ -21,7 +21,7 @@ export default function SettingsPage() {
       navigate.push(`${ROUTING.HOME}`)
     }
 
-  }, [isAuth])
+  }, [isAuth,navigate])
 
   return (
     <div className="content">

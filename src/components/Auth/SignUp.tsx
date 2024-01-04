@@ -46,7 +46,7 @@ export const SignUp = () => {
       navigate.push(`${ROUTING.HOME}`)
     }
 
-  }, [isAuth])
+  }, [isAuth,navigate ])
 
   const onSubmit = async (dt: UserSignUp) => {
     const { status, data } = await signUp(dt)
